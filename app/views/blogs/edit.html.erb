@@ -1,0 +1,15 @@
+<div class="blog-header">
+<%= render "blogs/header",user: @user %>
+</div>
+
+編集ページ
+<%= form_for(@blog) do |f| %>
+<h4>タイトル</h4>
+<%= f.text_field :title %>
+
+<h4>本文</h4>
+<%= f.text_area :body %>
+
+<%= f.submit "送信" %>
+
+<% end %>

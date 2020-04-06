@@ -1,0 +1,26 @@
+<div class="user-header">
+<%= render "blogs/header",user: @user %>
+</div>
+
+<div class="edit-box">
+		<h3>User Edit</h3>
+	<div class="edit-form">
+
+		<%= form_for(@user) do |f| %>
+
+			<!-- アタッチメント -->
+			<strong>Profile Image</strong><br>
+		<%= f.attachment_field :profile_image %><br>
+			<!-- 名前変更 -->
+			<strong>Name</strong><br>
+		<%= f.text_field :name %><br>
+			<!-- 自己紹介入力 -->
+			<strong>自己紹介</strong><br>
+		<%= f.text_area :introduction,:size=>"55x15" %><br>
+			<!--  -->
+		<%= f.submit "Update", class:"btn btn-success" %><br>
+
+
+		<% end %>
+	</div>
+</div>

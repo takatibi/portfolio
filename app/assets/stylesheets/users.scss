@@ -1,0 +1,55 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.main{
+	padding: 100px 0;
+}
+
+
+.user-header{
+	width:100%;
+	height: 400px;
+	background-image: url(Maldives.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+
+
+
+
+.show-box{
+	width: 100%;
+	text-align: center;
+	padding: 50px 0;
+
+}
+
+.show-box2{
+	border:solid 1px black;
+	background-color:#CCFFFF;
+	width: 50%;
+	margin:0 auto;
+	padding:50px;
+
+}
+
+
+
+.edit-box{
+	width: 100%;
+	text-align: center;
+	padding: 50px 0;
+}
+
+
+.edit-form{
+	width: 50%;
+	margin:0 auto;
+	border:solid 1px black;
+	background-color:#CCFFFF;
+	padding:50px;
+}
+

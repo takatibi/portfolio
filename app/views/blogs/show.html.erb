@@ -1,0 +1,30 @@
+<div class="blog-header">
+<%= render "blogs/header",user: @user %>
+</div>
+
+
+
+
+<div class="main">
+	<div class="show-box">
+
+		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "no_image.png",size:'200x200'%><br>
+		<%= @user.name %><br>
+
+		<%= @blog.title %><br>
+		<% @blog.images.each do |bi| %>
+			<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+			<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+		   <%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+		<% end %><br>
+
+			<%= @blog.body %><br>
+			<%= time_ago_in_words(@blog.created_at) %><br>
+		<% if current_user == @user %>
+			<%= link_to "編集", edit_blog_path(@blog.id), class:"btn btn-primary" %>
+			<%= link_to "削除",blog_path(@blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
+		<% end %>
+
+	</div>
+</div>
+
