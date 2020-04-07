@@ -17,21 +17,12 @@
 		<%= @blog.body %><br>
 
 			<!-- いいね機能 -->
-		<% if @blog.favorited_by?(current_user) %>
-				いいね!ボタン<%= link_to blog_favorites_path(@blog),method: :delete do %>
-					<span class="glyphicon glyphicon-heart"></span><!-- bootstrapの「glyphicons」でアイコン表示 -->
-				<% end %><br>
-				<%= @blog.favorites.count %> いいね
-				<%= @blog.comments.count %>件のコメント<br>
-		<% else %>
-				いいね!ボタン<%= link_to blog_favorites_path(@blog),method: :post do %>
-					<span class="glyphicon glyphicon-heart-empty"></span>
-				<% end %><br>
-				<%= @blog.favorites.count %> いいね
-				<%= @blog.comments.count %>コメント<br>
-		<% end %>
+			<strong>いいね!ボタン</strong><br>
+		<div id="links_buttons_<%= @blog.id %>">
+			<%= render "blogs/link",blog: @blog %>
+		</div>
+
 		<!-- コメント数、ブログの編集と削除ボタン -->
-		<%= @blog.created_at.strftime('%Y/%m/%d') %><br>
 		<% if current_user == @user %>
 			<%= link_to "編集", edit_blog_path(@blog.id), class:"btn btn-primary" %>
 			<%= link_to "記事を消す",blog_path(@blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
@@ -39,31 +30,21 @@
 
 		<!-- コメント一覧 -->
 		<div class="show-comment-box">
-		<div class="show-comment">
-		<% @blog.comments.each do |comments| %>
-			<%= comments.user.name %><br>
-			<%= comments.comment %><br>
-			<%= comments.created_at.strftime('%Y/%m/%d') %><br>
-			<!-- コメント削除 -->
-
-			<% if current_user == comments.user %>
-			<%= link_to "コメントを削除",blog_comments_path(blog_id: comments.id), method: :delete,"data-confirm"=> "本当に削除しますか？" %><br>
-			<% end %>
-		<% end %>
+		<div class="show-comment" id="comment">
+			<%= render "blogs/comment",blog: @blog %>
 		</div>
 		</div>
 
 		<!-- コメント入力フォーム -->
 		<% if user_signed_in? %>
 			<div class="show-comment-form">
-				<%= form_with(model: [@blog, @comment],local: true) do |comment| %>
-				<%= comment.text_area :comment, placeholder:"コメントを入力",:size=>"100x10" %><br>
+				<%= form_with(model: [@blog, @comment],remote: true) do |comment| %>
+					<%= comment.text_area :comment, placeholder:"コメントを入力",:size=>"100x10" %><br>
 			</div>
-				<%= comment.submit "コメントを送信",class:"btn btn-success", data: {"turbolinks" => false} %>
+					<%= comment.submit "コメントを送信",class:"btn btn-success"%>
 				<% end %>
 		<% end %>
-
-	</div>
+		</div>
 </div>
 
 

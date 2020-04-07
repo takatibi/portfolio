@@ -17,11 +17,12 @@
 					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
 					<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
 				<% end %><br>
-					<%= blog.title %><br>
-					<%= link_to "ブログの記事を見る", blog_path(blog) %><br>
-					<%= blog.favorites.count %>いいね
-					<%= blog.comments.count %>コメント<br>
-					<%= blog.created_at.strftime('%Y/%m/%d') %>
+					<strong><%= blog.title %></strong><br>
+					<%= link_to "ブログの記事を見る", blog_path(blog),data: {"turbolinks" => false} %><br>
+					<div id="links_buttons_<%= blog.id %>">
+						<%= render partial: "blogs/link", locals: {blog: blog} %>
+						<%= blog.comments.count %>コメント<br>
+					</div>
 				<div class="index-box-bottom">
 				</div>
 			<% end %>
