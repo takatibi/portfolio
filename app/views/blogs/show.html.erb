@@ -3,28 +3,93 @@
 </div>
 
 
-
-
 <div class="main">
 	<div class="show-box">
-
-		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "no_image.png",size:'200x200'%><br>
+		<!-- このblogの情報 -->
+		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
 		<%= @user.name %><br>
-
 		<%= @blog.title %><br>
-		<% @blog.images.each do |bi| %>
-			<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
-			<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-		   <%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
-		<% end %><br>
+			<% @blog.images.each do |bi| %>
+				<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+				<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+				<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+			<% end %><br>
+		<%= @blog.body %><br>
 
-			<%= @blog.body %><br>
-			<%= time_ago_in_words(@blog.created_at) %><br>
+			<!-- いいね機能 -->
+		<% if @blog.favorited_by?(current_user) %>
+				いいね!ボタン<%= link_to blog_favorites_path(@blog),method: :delete do %>
+					<span class="glyphicon glyphicon-heart"></span><!-- bootstrapの「glyphicons」でアイコン表示 -->
+				<% end %><br>
+				<%= @blog.favorites.count %> いいね
+				<%= @blog.comments.count %>件のコメント<br>
+		<% else %>
+				いいね!ボタン<%= link_to blog_favorites_path(@blog),method: :post do %>
+					<span class="glyphicon glyphicon-heart-empty"></span>
+				<% end %><br>
+				<%= @blog.favorites.count %> いいね
+				<%= @blog.comments.count %>コメント<br>
+		<% end %>
+		<!-- コメント数、ブログの編集と削除ボタン -->
+		<%= @blog.created_at.strftime('%Y/%m/%d') %><br>
 		<% if current_user == @user %>
 			<%= link_to "編集", edit_blog_path(@blog.id), class:"btn btn-primary" %>
-			<%= link_to "削除",blog_path(@blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
+			<%= link_to "記事を消す",blog_path(@blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
+		<% end %>
+
+		<!-- コメント一覧 -->
+		<div class="show-comment-box">
+		<div class="show-comment">
+		<% @blog.comments.each do |comments| %>
+			<%= comments.user.name %><br>
+			<%= comments.comment %><br>
+			<%= comments.created_at.strftime('%Y/%m/%d') %><br>
+			<!-- コメント削除 -->
+
+			<% if current_user == comments.user %>
+			<%= link_to "コメントを削除",blog_comments_path(blog_id: comments.id), method: :delete,"data-confirm"=> "本当に削除しますか？" %><br>
+			<% end %>
+		<% end %>
+		</div>
+		</div>
+
+		<!-- コメント入力フォーム -->
+		<% if user_signed_in? %>
+			<div class="show-comment-form">
+				<%= form_with(model: [@blog, @comment],local: true) do |comment| %>
+				<%= comment.text_area :comment, placeholder:"コメントを入力",:size=>"100x10" %><br>
+			</div>
+				<%= comment.submit "コメントを送信",class:"btn btn-success", data: {"turbolinks" => false} %>
+				<% end %>
 		<% end %>
 
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

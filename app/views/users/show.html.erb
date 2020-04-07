@@ -7,7 +7,7 @@
 		<!-- ユーザーのプロフィール情報 -->
 		<div class="show-box2">
 			<strong>Profile Image</strong><br>
-			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "no_image.png",size:'200x200'%><br>
+			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
 
 			<strong>Name</strong><br>
 			<%= @user.name %><br>

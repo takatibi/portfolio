@@ -70,6 +70,7 @@ gem 'jquery-rails'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'kaminari','~> 1.1.1'
 
 
 

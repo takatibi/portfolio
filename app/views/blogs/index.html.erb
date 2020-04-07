@@ -4,35 +4,63 @@
 
 
 <div class="main">
-
 <div class="container">
 	<div class="row">
 		<div class="col-lg-5">
+
 			<!-- ユーザーが投稿したブログ内容をeach文を回していく -->
 			<% @blogs.each do |blog| %>
-				<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "no_image.png",size:'100x100'%>
-				<%= blog.title %><br>
-					<% blog.images.each do |bi| %>
+					<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
+					<%= link_to blog.user.name ,user_path(blog.user) %><br>
+				<% blog.images.each do |bi| %>
 					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
 					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-					    <%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
-					<% end %><br>
-				<%= blog.body %><br>
-				<%= link_to "詳細ページ", blog_path(blog) %>
-				<% if current_user == blog.user %>
-					<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
-		 		<% end %>
-				<%= time_ago_in_words(blog.created_at) %><br>
+					<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+				<% end %><br>
+					<%= blog.title %><br>
+					<%= link_to "ブログの記事を見る", blog_path(blog) %><br>
+					<%= blog.favorites.count %>いいね
+					<%= blog.comments.count %>コメント<br>
+					<%= blog.created_at.strftime('%Y/%m/%d') %>
 				<div class="index-box-bottom">
 				</div>
 			<% end %>
+			<%= paginate @blogs, class: "paginate" %>
+
 		</div>
 	</div>
 </div>
-
 </div>
 
 
 
 
 <div class="footer"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

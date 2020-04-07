@@ -6,7 +6,7 @@
 		<h3>User Edit</h3>
 	<div class="edit-form">
 
-		<%= form_for(@user) do |f| %>
+		<%= form_with model: @user,local: true do |f| %>
 
 			<!-- アタッチメント -->
 			<strong>Profile Image</strong><br>
