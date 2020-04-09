@@ -1,17 +1,33 @@
+
 <div class="blog-header">
 <%= render "blogs/header",user: @user %>
 </div>
 
+
+
+
+<!-- 投稿失敗時のエラーメッセージ -->
+	<!-- 投稿失敗時のエラーメッセージ -->
+<div class="error-box">
+<%= form_for(@blog) do |f| %>
+	<% if @blog.errors.any? %>
+		<h2><%= @blog.errors.count %>件のエラーが発生しました。</h2>
+				<% @blog.errors.full_messages.each do |error| %>
+				<%= error %><br>
+			<% end %>
+<% end %>
+</div>
+
+<!-- ブログ投稿フォーム -->
 <div class="new-box">
 	<div class="new-form">
 		<div class="new-form-box">
-			<%= form_for(@blog) do |f| %>
 				<div class="new-img-box">
 				</div>
             <div class="blog-num-0" id="image-box__container">
 				<div class="new-img">
 					<!-- multiple => truedeで配列で送れる。しなかったらデータが上書きされていた -->
-						<%= f.file_field :image ,id:"img-file", :multiple => true %>
+					<%= f.file_field :image ,id:"img-file", :multiple => true %>
 				</div>
 
 					<strong>Title</strong><br>
@@ -23,10 +39,11 @@
 					<div class="new-form-btn">
 						<%= f.submit "Create",class:"btn btn-success" %>
 					</div>
+			</div>
 		</div>
-		<% end %>
 	</div>
 </div>
+<% end %>
 
 
 

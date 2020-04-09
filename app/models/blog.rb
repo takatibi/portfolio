@@ -11,5 +11,12 @@ class Blog < ApplicationRecord
 	accepts_nested_attributes_for :images, allow_destroy: true
 	validates :title, length: {in: 1..20}
 	validates :body, length: {in: 1..200}
+	validates :title, presence:true
+	validates :body, presence:true
+
+	def self.search(search)
+      return Blog.all unless search
+      Blog.where([ "(title like ?)","%#{search}%"])
+    end
 
 end

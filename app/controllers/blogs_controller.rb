@@ -21,15 +21,24 @@ class BlogsController < ApplicationController
 		end
 
 		def create
-			blog = Blog.new(blog_params)
-			blog.user_id = current_user.id
+			@blog = Blog.new(blog_params)
+			@blog.user_id = current_user.id
 			# 画像のパラメーターの内容が[:blog][:image]
-			params[:blog][:image].each do |bi|
-				# 「build」は親の子要素を保存する。
-				blog.images.build(image: bi)
+			if params[:blog][:image]
+				params[:blog][:image].each do |bi|
+					# 「build」は親の子要素を保存する。
+					@blog.images.build(image: bi)
+				end
+			else
+				@blog.images.build()
 			end
-			blog.save
-			redirect_to blogs_path
+
+			if @blog.save
+				flash[:notice] = "ブログを投稿しました"
+				redirect_to blogs_path
+			else
+			 render action: :new
+			end
 		end
 
 		def update

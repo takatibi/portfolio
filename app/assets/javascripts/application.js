@@ -14,5 +14,13 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function(){
+	$('.blog_slick').slick({
+		autoplay:true,
+		dots:true,
+	});
+});

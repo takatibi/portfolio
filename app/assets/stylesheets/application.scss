@@ -15,11 +15,34 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "slick-theme";
+ @import "slick";
 
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing:border-box;
+}
+
+.notice{
+  width: 400px;
+  margin:20px auto;
+  text-align: center;
+  background-color: green;
+  color: white;
+}
+
+.alert{
+  width: 400px;
+  margin:20px auto;
+  text-align: center;
+  background-color: red;
+  color: white;
+}
+
+.error-box{
+  color: red;
+  text-align: center;
 }
 
 .header-link{
@@ -35,3 +58,84 @@
 	height: 100px;
 	background-color: #D7EEFF;
 }
+
+.log{
+  background: url(80.3.jpg) no-repeat center;
+  width: 100%;
+  height: 900px;
+  background-size: cover;
+  padding: 100px;
+  position: relative;
+  z-index: 0;
+  text-align: center;
+}
+.log:before{
+  content: '';
+  width: 100%;
+  height: 900px;
+  background: inherit;
+  filter: blur(5px);
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+}
+
+.log-box{
+  	background-color: rgba( 0, 0, 0, 0.5);
+	padding-bottom: 30px;
+	margin:0 auto;
+	width: 400px;
+	padding-top: 20px;
+}
+
+.log-box span{
+  color: white;
+}
+
+.log-box h2{
+	padding-bottom: 20px;
+  color: white;
+}
+
+.field{
+	padding-bottom: 10px;
+}
+
+.actions{
+  padding-bottom: 10px;
+}
+
+
+.blog_slick{
+  width: 400px;
+
+}
+
+.slick-arrow{
+  background-color: gray !important;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

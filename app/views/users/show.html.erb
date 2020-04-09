@@ -4,6 +4,12 @@
 </div>
 	<div class="show-box">
 		<h2>Userページ</h2>
+
+<!-- サクセスメッセージ -->
+<% flash.each do |key, value| %>
+	<%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+
 		<!-- ユーザーのプロフィール情報 -->
 		<div class="show-box2">
 			<strong>Profile Image</strong><br>

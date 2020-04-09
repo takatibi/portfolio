@@ -2,11 +2,22 @@
 <%= render "blogs/header",user: @user %>
 </div>
 
+
 <div class="edit-box">
 		<h3>User Edit</h3>
 	<div class="edit-form">
 
 		<%= form_with model: @user,local: true do |f| %>
+
+	<!-- 投稿失敗時のエラーメッセージ -->
+<div class="error-box">
+	<% if @user.errors.any? %>
+		<h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
+				<% @user.errors.full_messages.each do |error| %>
+					<%= error %><br>
+				<% end %>
+	<% end %>
+</div>
 
 			<!-- アタッチメント -->
 			<strong>Profile Image</strong><br>

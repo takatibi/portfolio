@@ -6,27 +6,31 @@
 <div class="main">
 	<div class="show-box">
 		<!-- このblogの情報 -->
-		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
+		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'150x150',class:"img-photo" %><br>
 		<%= @user.name %><br>
 		<%= @blog.title %><br>
 			<% @blog.images.each do |bi| %>
 				<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
 				<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-				<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+				<%= image_tag(bi.image_url, size:'400x250') if bi.image_url %>
 			<% end %><br>
 		<%= @blog.body %><br>
-
-			<!-- いいね機能 -->
-			<strong>いいね!ボタン</strong><br>
-		<div id="links_buttons_<%= @blog.id %>">
-			<%= render "blogs/link",blog: @blog %>
-		</div>
+		<%= @blog.created_at.strftime('%Y/%m/%d') %><br>
 
 		<!-- コメント数、ブログの編集と削除ボタン -->
 		<% if current_user == @user %>
 			<%= link_to "編集", edit_blog_path(@blog.id), class:"btn btn-primary" %>
 			<%= link_to "記事を消す",blog_path(@blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
 		<% end %>
+
+		<!-- いいね機能 -->
+		<div class="show-link-box">
+			<strong>いいね!ボタン</strong><br>
+			<div id="links_buttons_<%= @blog.id %>">
+				<%= render "blogs/link",blog: @blog %>
+		</div>
+		</div>
+
 
 		<!-- コメント一覧 -->
 		<div class="show-comment-box">
