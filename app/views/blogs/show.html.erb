@@ -3,11 +3,14 @@
 </div>
 
 
-<div class="main">
+<div class="blog-main">
+		<h1>詳細ページ</h1>
 	<div class="show-box">
 		<!-- このblogの情報 -->
-		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'150x150',class:"img-photo" %><br>
-		<%= @user.name %><br>
+		<%= link_to user_path(@user) do %>
+		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'150x150',class:"img-photo" %>
+		<% end %><br>
+		<%= link_to @user.name ,user_path(@user) %><br>
 		<%= @blog.title %><br>
 			<% @blog.images.each do |bi| %>
 				<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->

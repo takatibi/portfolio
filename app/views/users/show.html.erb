@@ -1,43 +1,110 @@
 
 <div class="user-header">
-<%= render "blogs/header",user: @user %>
+	<%= render "blogs/header",user: @user %>
 </div>
-	<div class="show-box">
+
+<div class="show-box">
 		<h2>Userページ</h2>
 
 <!-- サクセスメッセージ -->
-<% flash.each do |key, value| %>
-	<%= content_tag(:div, value, class: "#{key}") %>
-<% end %>
+	<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "#{key}") %>
+	<% end %>
 
-		<!-- ユーザーのプロフィール情報 -->
-		<div class="show-box2">
-			<strong>Profile Image</strong><br>
-			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
+<!-- ユーザーのプロフィール情報 -->
+	<div class="show-box2">
+		<strong>Profile Image</strong><br>
+		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
 
 			<strong>Name</strong><br>
-			<%= @user.name %><br>
-
+		<%= @user.name %><br>
 			<strong>Introduction</strong><br>
-			<%= @user.introduction %><br>
-			<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
-		</div>
+		<%= @user.introduction %><br>
+		<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
 
-		<!-- ユーザーが投稿したブログ一覧 -->
-		<div class="show-index">
-			<% @blog.each do |blog| %>
-			 <%= blog.title %><br>
-				 <% blog.images.each do |bi| %>
+<!-- フォロー機能 -->
+		<% unless current_user == @user %>
+			<% if current_user.following?(@user) %>
+				<%= form_for(current_user.relationships.find_by(follow_id: @user.id), html: { method: :delete }) do |f| %>
+					<%= hidden_field_tag :follow_id, @user.id %>
+					<%= f.submit "フォローを外す", class: "btn btn-danger btn-block" %>
+				<% end %>
+			<% else %>
+				<%= form_for(current_user.relationships.build) do |f| %>
+					<%= hidden_field_tag :follow_id, @user.id %>
+					<%= f.submit "フォローする",class: "btn btn-primary btn-block" %>
+				<% end %>
+			<% end %>
+		<% end %>
+<!-- フォロー数、フォロワー数 -->
+		<div class="follow-box">
+			<%= link_to following_user_path do %>
+				<span><%= @user.followings.count %> フォロー中/</span>
+			<% end %>
+			<%= link_to @user.followers.count ,follower_user_path %><span>フォロワー</span>
+		</div>
+	</div>follower_user
+
+<!-- ユーザーが投稿したブログ一覧 -->
+	<div class="show-index">
+		<% @blog.each do |blog| %>
+			<%= blog.title %><br>
+				<!-- <div class="blog_slick"> -->
+				<% blog.images.each do |bi| %>
 					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
 					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-					 <%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+					<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
 				<% end %><br>
-			 <%= blog.body %><br>
-			 <% if current_user == @user %>
-			 	<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
-			 <% end %>
-			 <%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %><br>
-			<% end %>
-		</div>
-
+				<!-- </div> -->
+			<%= blog.body %><br>
+		<% if current_user == @user %>
+			<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
+		<% end %>
+			<%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %><br>
+		<% end %>
 	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

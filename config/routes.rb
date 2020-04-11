@@ -7,9 +7,14 @@ Rails.application.routes.draw do
   root to: 'home#top'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users
+  resources :users do
+     member do
+      get :following, :follower
+     end
+  end
   resources :blogs do
   	resource :comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
   end
+  resources :relationships, only: [:create, :destroy, :followings, :follower]
 end

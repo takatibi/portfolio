@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :blogs, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :relationships
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :followers, through: :reverse_of_relationships, source: :user
 
   attachment :profile_image
 
@@ -14,8 +18,72 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 100}
   validates :name, presence: true
 
+  def follow(other_user)
+    unless self == other_user
+      self.relationships.find_or_create_by(follow_id: other_user.id)
+    end
+  end
+
+  def unfollow(other_user)
+    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship.destroy if relationship
+  end
+
+  def following?(other_user)
+    self.followings.include?(other_user)
+  end
+
+  def followers?(other_user)
+    p "------------------"
+    p self.followers
+    self.followers.include?(other_user)
+  end
+
+  def current_following?(other_user)
+    self.followings.exists?(other_user)
+  end
+
+  def current_followers?(other_user)
+    self.followers.exists?
+  end
+
   def self.search(search)
         return User.all unless search
         User.where(['name LIKE ?', "%#{search}%"])
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

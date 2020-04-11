@@ -2,17 +2,17 @@
 	<div class="home-header">
 		<h1>TRAVAL DIARY</h1>
 		<p>You only live once</p>
-	<div class="home-list">
-		<% if user_signed_in? %>
-			<%= link_to "マイページ",  user_path(current_user.id),class:"btn header-link" %>
-			<%= link_to "ブログ一覧" ,blogs_path,class: "btn btn btn-success",class:"btn header-link" %>
-			<%= link_to "Log out", destroy_user_session_path ,method: :delete,class:"btn header-link" %>
-		<% else %>
-			<%= link_to "ブログ一覧" ,blogs_path,class: "btn btn btn-success",class:"btn header-link" %>
-			<%= link_to "ログイン",  new_user_session_path,class:"btn header-link" %>
-			<%= link_to "新規登録",  new_user_registration_path,class:"btn header-link" %>
-		<% end %>
-	</div>
+		<div class="home-list">
+			<% if user_signed_in? %>
+				<%= link_to "マイページ",  user_path(current_user.id),class:"btn header-link" %>
+				<%= link_to "ブログ一覧" ,blogs_path,class: "btn btn btn-success",class:"btn header-link" %>
+				<%= link_to "Log out", destroy_user_session_path ,method: :delete,class:"btn header-link" %>
+			<% else %>
+				<%= link_to "ブログ一覧" ,blogs_path,class: "btn btn btn-success",class:"btn header-link" %>
+				<%= link_to "ログイン",  new_user_session_path,class:"btn header-link" %>
+				<%= link_to "新規登録",  new_user_registration_path,class:"btn header-link" %>
+			<% end %>
+		</div>
 	</div>
 	<% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
