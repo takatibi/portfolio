@@ -16,8 +16,14 @@
 	padding-bottom:50px;
 }
 
+img.blog_slick-image{
+	width: 500px;
+	height: 300px;
+}
+
 .blog-main h1{
 	text-align: center;
+	width: 100%;
 }
 
 .new-box{
@@ -61,6 +67,11 @@
 
 .blog-center{
 
+}
+
+.blog-show-image{
+	display: flex;
+    justify-content: center;
 }
 
 

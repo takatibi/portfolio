@@ -12,11 +12,20 @@
 		<% end %><br>
 		<%= link_to @user.name ,user_path(@user) %><br>
 		<%= @blog.title %><br>
-			<% @blog.images.each do |bi| %>
-				<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
-				<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-				<%= image_tag(bi.image_url, size:'400x250') if bi.image_url %>
-			<% end %><br>
+
+
+
+			<div class="blog-show-image">
+			<div class="blog_slick">
+				<% @blog.images.each do |bi| %>
+					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+				<%= image_tag(bi.image_url, size:'400x250',class:"blog_slick-image") if bi.image_url %>
+				<% end %><br>
+			</div>
+			</div>
+
+
 		<%= @blog.body %><br>
 		<%= @blog.created_at.strftime('%Y/%m/%d') %><br>
 
@@ -27,12 +36,14 @@
 		<% end %>
 
 		<!-- いいね機能 -->
+	<% if user_signed_in? %>
 		<div class="show-link-box">
 			<strong>いいね!ボタン</strong><br>
 			<div id="links_buttons_<%= @blog.id %>">
 				<%= render "blogs/link",blog: @blog %>
 		</div>
 		</div>
+	<% end %>
 
 
 		<!-- コメント一覧 -->

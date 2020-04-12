@@ -11,7 +11,7 @@
 		<strong>Name</strong><br>
 		<%= f.name %><br>
 
-		<!--  -->
+		<!-- フォローボタン -->
 		<% if user_signed_in? %>
 			<% if current_user.followers?(f) and current_user.current_following?(f.id) and current_user != f %>
 				<%= form_for(current_user.relationships.find_by(follow_id: f.id), html: { method: :delete }) do |fo| %>

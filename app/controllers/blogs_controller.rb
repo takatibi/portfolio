@@ -7,7 +7,11 @@ class BlogsController < ApplicationController
 		end
 
 		def index
-			@blogs = Blog.page(params[:page]).reverse_order
+			unless params[:category].blank?
+				@blogs = Blog.where(category: params[:category]).page(params[:page]).reverse_order
+			else
+				@blogs = Blog.page(params[:page]).reverse_order
+			end
 		end
 
 		def show
@@ -55,7 +59,7 @@ class BlogsController < ApplicationController
 
 	private
 		def blog_params
-			params.require(:blog).permit(:title, :body)
+			params.require(:blog).permit(:title, :body ,:category)
 		end
 
 end

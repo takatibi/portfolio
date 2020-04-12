@@ -26,7 +26,7 @@
 					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
 					<div class="blog_slick">
 						<% blog.images.each do |bi| %>
-						<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+						<%= image_tag(bi.image_url, size:'300x200' ,class:"blog_slick-image") if bi.image_url %>
 						<% end %><br>
 					</div>
 
@@ -34,8 +34,14 @@
 					<strong><%= blog.title %></strong><br>
 					<%= link_to "ブログの記事を見る", blog_path(blog),data: {"turbolinks" => false} %><br>
 					<div id="links_buttons_<%= blog.id %>">
+
+						<% if user_signed_in? %>
 						<%= render partial: "blogs/link", locals: {blog: blog} %>
+						<% end %>
 						<%= blog.comments.count %>コメント<br>
+																		<!-- enumのキーを渡している -->
+						カテゴリー/<%= link_to blog.category ,blogs_path(:category => blog.category)
+						 %>
 					</div>
 					<div class="index-box-bottom">
 					</div>
