@@ -16,12 +16,12 @@
 			<% if current_user.followers?(f) and current_user.current_following?(f.id) and current_user != f %>
 				<%= form_for(current_user.relationships.find_by(follow_id: f.id), html: { method: :delete }) do |fo| %>
 					<%= hidden_field_tag :follow_id, f.id %>
-					<%= fo.submit "フォローを外す", class: "btn btn-danger btn-block" %>
+					<%= fo.submit "フォローを外す", class: "btn btn-danger" %>
 				<% end %>
 			<% elsif current_user != f %>
 				<%= form_for(current_user.relationships.build) do |fo| %>
 					<%= hidden_field_tag :follow_id, f.id %>
-					<%= fo.submit "フォローする",class: "btn btn-primary btn-block" %>
+					<%= fo.submit "フォローする",class: "btn btn-primary" %>
 				<% end %>
 			<% end %>
 		<% end %>

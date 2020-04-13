@@ -3,13 +3,23 @@
 </div>
 
 
+
+<!-- 検査した内容 -->
+<div class="search_results">
+	<h2>「<%= @seach %>」の検索結果</h2>
+</div>
+
+
+
+
 <!-- ユーザーのプロフィール情報 -->
 <% if params[:search_model] == "user" %>
 	<% @users.each do |user| %>
 	<div class="search-box">
 		<div class="search-index">
-			<%= attachment_image_tag user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
-
+			<%= link_to user_path(user) do %>
+				<%= attachment_image_tag user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
+			<% end %>
 			<strong>Name</strong><br>
 			<%= link_to user.name ,user_path(user)  %><br>
 
@@ -24,7 +34,9 @@
 	<% @blogs.each do |blog| %>
 	<div class="search-box">
 		<div class="search-index">
-			<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
+			<%= link_to user_path(blog.user) do %>
+				<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
+			<% end %>
 			<%= link_to blog.user.name ,user_path(blog.user) %><br>
 			<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
 			<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->

@@ -20,28 +20,33 @@
 		<%= @user.name %><br>
 			<strong>Introduction</strong><br>
 		<%= @user.introduction %><br>
+		<% if current_user == @user %>
 		<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
+		<% end %>
 
 <!-- フォロー機能 -->
 		<% unless current_user == @user %>
 			<% if current_user.following?(@user) %>
 				<%= form_for(current_user.relationships.find_by(follow_id: @user.id), html: { method: :delete }) do |f| %>
 					<%= hidden_field_tag :follow_id, @user.id %>
-					<%= f.submit "フォローを外す", class: "btn btn-danger btn-block" %>
+					<%= f.submit "フォローを外す", class: "btn btn-danger" %>
 				<% end %>
 			<% else %>
 				<%= form_for(current_user.relationships.build) do |f| %>
 					<%= hidden_field_tag :follow_id, @user.id %>
-					<%= f.submit "フォローする",class: "btn btn-primary btn-block" %>
+					<%= f.submit "フォローする",class: "btn btn-primary" %>
 				<% end %>
 			<% end %>
 		<% end %>
 <!-- フォロー数、フォロワー数 -->
 		<div class="follow-box">
 			<%= link_to following_user_path do %>
-				<span><%= @user.followings.count %> フォロー中/</span>
+				<span><%= @user.followings.count %> フォロー中</span>
+			<% end %>/
+
+			<%= link_to follower_user_path do %>
+				<span><%= @user.followers.count %> フォロワー</span>
 			<% end %>
-			<%= link_to @user.followers.count ,follower_user_path %><span>フォロワー</span>
 		</div>
 	</div>
 
@@ -49,13 +54,15 @@
 	<div class="show-index">
 		<% @blog.each do |blog| %>
 			<%= blog.title %><br>
-				<!-- <div class="blog_slick"> -->
-				<% blog.images.each do |bi| %>
-					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
-					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-					<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
-				<% end %><br>
-				<!-- </div> -->
+						<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+						<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+			<div class="blog-show-image">
+				<div class="blog_slick">
+					<% blog.images.each do |bi| %>
+						<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+					<% end %><br>
+				</div>
+			</div>
 			<%= blog.body %><br>
 		<% if current_user == @user %>
 			<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>

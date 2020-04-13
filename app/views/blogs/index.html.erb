@@ -8,58 +8,56 @@
 
 
 <div class="blog-main">
-	<div class="blog-side-left"></div>
+	<div class="blog-side-left">
+	</div>
 	<div class="blog-center">
 		<h1>Blogページ</h1>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3"></div>
-				<div class="col-lg-6">
 					<!-- ユーザーが投稿したブログ内容をeach文を回していく -->
-					<% @blogs.each do |blog| %>
-					<%= link_to user_path(blog.user) do %>
-					<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
-					<% end %>
-					<%= link_to blog.user.name ,user_path(blog.user) %><br>
-					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
-					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-					<div class="blog_slick">
-						<% blog.images.each do |bi| %>
-						<%= image_tag(bi.image_url, size:'300x200' ,class:"blog_slick-image") if bi.image_url %>
-						<% end %><br>
-					</div>
-
-					<!-- ブログ内容 -->
-					<strong><%= blog.title %></strong><br>
-					<%= link_to "ブログの記事を見る", blog_path(blog),data: {"turbolinks" => false} %><br>
-					<div id="links_buttons_<%= blog.id %>">
-
-						<% if user_signed_in? %>
-						<%= render partial: "blogs/link", locals: {blog: blog} %>
+				<% @blogs.each do |blog| %>
+					<div class="blog-index-box">
+						<%= link_to user_path(blog.user) do %>
+						<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
 						<% end %>
-						<%= blog.comments.count %>コメント<br>
-																		<!-- enumのキーを渡している -->
-						カテゴリー/<%= link_to blog.category ,blogs_path(:category => blog.category)
-						 %>
+						<%= link_to blog.user.name ,user_path(blog.user) %><br>
+						<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+						<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+						<div class="blog_slick">
+							<% blog.images.each do |bi| %>
+							<%= image_tag(bi.image_url, size:'300x200' ,class:"blog_slick-image") if bi.image_url %>
+							<% end %><br>
+						</div>
+
+						<!-- ブログ内容 -->
+						<strong><%= blog.title %></strong><br>
+						<%= link_to "ブログの記事を見る", blog_path(blog),data: {"turbolinks" => false} %><br>
+						<div id="links_buttons_<%= blog.id %>">
+
+							<% if user_signed_in? %>
+							<%= render partial: "blogs/link", locals: {blog: blog} %>
+							<% end %>
+							<%= blog.comments.count %>コメント<br>
+							<!-- enumのキーを渡している -->
+							カテゴリー/<%= link_to blog.category ,blogs_path(:category => blog.category)
+							%>
+						</div>
+						<div class="index-box-bottom">
+						</div>
 					</div>
-					<div class="index-box-bottom">
-					</div>
-					<% end %>
+				<% end %>
 					<%= paginate @blogs, class: "paginate" %>
 
-				</div>
-				<div class="col-lg-3"></div>
-			</div>
+	</div>
+	<div class="blog-side-right">
+		<div class="category-box">
+			<h3>カテゴリー</h3>
+			<% Blog.categories.each do |category| %>
+			<h4><%= link_to category[0], blogs_path(:category => category[1]) %></h4><br>
+			<% end %>
 		</div>
 	</div>
-	<div class="blog-side-right"></div>
 </div>
 
-
-
-
-<div class="footer"></div>
 
 
 

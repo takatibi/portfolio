@@ -12,6 +12,8 @@ class BlogsController < ApplicationController
 			else
 				@blogs = Blog.page(params[:page]).reverse_order
 			end
+			@categories = Blog.categories
+			@category = params[:category]
 		end
 
 		def show
