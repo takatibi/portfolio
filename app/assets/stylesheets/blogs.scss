@@ -14,35 +14,36 @@
 
 .blog-main{
 	display: flex;
+	background: linear-gradient(#fffde4, #005aa7, #fffde4, #005aa7);
 }
 
 .blog-center{
 	text-align: center;
 	width: 850px;
-	border:solid 2px black;
 }
-
-.blog-index-box{
-	border:solid 2px black;
-}
-
 
 .blog-side-right{
-	background-color: silver;
 	width: 500px;
 }
 
 .blog-side-left{
 	width: 500px;
-	background-color: silver;
 }
 
 
+.img-photo{
+	margin-top: 20px;
+}
+
+.blog-index-box{
+	border:solid 2px black;
+	margin: 30px 0;
+	background-color: white;
+}
 
 .blog-main h1{
 	text-align: center;
 	width: 100%;
-	float: left;
 	padding-bottom: 60px;
 }
 
@@ -65,7 +66,7 @@ img.blog_slick-image{
 .category-box{
 	width: 250px;
 	border: solid 2px black;
-	margin: 100px 0 0 80px;
+	margin: 150px 0 0 80px;
 	background-color: white;
 }
 
@@ -82,7 +83,9 @@ img.blog_slick-image{
 
 
 
-
+.blog-main-new h1{
+	text-align: center;
+}
 
 .new-box{
 	width: 100%;
@@ -108,9 +111,23 @@ img.blog_slick-image{
 
 
 
+.blog-show-main{
+	display: flex;
+	background: linear-gradient(#fffde4, #005aa7);
+}
 
 
 
+
+
+
+.blog-show-box{
+	background-color: white;
+	width: 80%;
+	text-align: center;
+	margin: 100px 0 ;
+	padding-bottom: 30px;
+}
 
 .show-comment-form{
 	padding:50px 0 30px 0;
@@ -127,7 +144,6 @@ img.blog_slick-image{
 	display: flex;
     justify-content: center;
 }
-
 
 
 

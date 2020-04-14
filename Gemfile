@@ -71,6 +71,8 @@ gem 'jquery-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'kaminari','~> 1.1.1'
+gem 'rails-i18n'
+gem 'enum_help'
 
 gem 'pry-byebug', group: :development
 

@@ -16,12 +16,12 @@ class Blog < ApplicationRecord
 	validates :category, presence:true
 
 	enum category: {
-		Asia: 0,
-		Africa: 1,
-		Europa: 2,
-		North_america: 3,
-		South_america: 4,
-		Oceania: 5,
+		アジア: 0,
+		アフリカ: 1,
+		ヨーロッパ: 2,
+		北アメリカ: 3,
+		南アメリカ: 4,
+		オセアニア: 5,
 	}
 
 	def self.search(search)

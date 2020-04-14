@@ -2,6 +2,7 @@
 	<%= render "blogs/header",user: @user %>
 </div>
 
+
 <div class="follows-box">
 	<h3>フォロワー数<%= @users.followers.count %>人</h3>
 	<% @users.followers.each do |f| %>

@@ -5,19 +5,20 @@
 
 
 
-<div class="blog-main">
+<div class="blog-show-main">
 	<div class="blog-side-left">
 	</div>
-	<div class="show-box">
+	<div class="blog-show-box">
 	<h1>詳細ページ</h1>
 		<!-- このblogの情報 -->
 		<%= link_to user_path(@user) do %>
 		<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'150x150',class:"img-photo" %>
 		<% end %><br>
 		<%= link_to @user.name ,user_path(@user) %><br>
+
+
+
 		<%= @blog.title %><br>
-
-
 
 		<div class="blog-show-image">
 			<div class="blog_slick">
