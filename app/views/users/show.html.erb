@@ -51,39 +51,56 @@
 			<!-- フォロー数、フォロワー数 -->
 			<div class="follow-box">
 				<%= link_to following_user_path do %>
-				<span><%= @user.followings.count %> フォロー中</span>
+				<span>フォロー数<%= @user.followings.count %>人</span>
 				<% end %>/
-
 				<%= link_to follower_user_path do %>
-				<span><%= @user.followers.count %> フォロワー</span>
+				<span>フォロワー数<%= @user.followers.count %>人</span>
+				<% end %>
+
+				<!-- チャット機能(DM) -->
+				<% if @user.id == current_user.id %>
+				<% else %>
+				<% if @isRoom == true %>
+				<p><a href="/rooms/ <%= @roomId %>" class="blog-show-dm-btn">
+					<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					</a>
+				</p>
+					<% else %>
+					<%= form_for @room do |f| %>
+					<%= fields_for @entry do |e| %>
+					<%= e.hidden_field :user_id, :value => @user.id %>
+					<% end %>
+					<%= f.submit "チャットを始める" %>
+				<% end %>
+				<% end %>
 				<% end %>
 			</div>
 		</div>
 
-		<!-- ユーザーが投稿したブログ一覧 -->
-		<% @blog.each do |blog| %>
-		<div class="user-show-index">
-			<h3><%= blog.title %></h3><br>
-			<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
-			<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-			<div class="blog-show-image">
-				<div class="blog_slick">
-					<% blog.images.each do |bi| %>
-					<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
-					<% end %><br>
+			<!-- ユーザーが投稿したブログ一覧 -->
+			<% @blog.each do |blog| %>
+			<div class="user-show-index">
+				<h3><%= blog.title %></h3><br>
+				<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+				<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+				<div class="blog-show-image">
+					<div class="blog_slick">
+						<% blog.images.each do |bi| %>
+						<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+						<% end %><br>
+					</div>
 				</div>
+				<%= blog.body %><br>
+				<% if current_user == @user %>
+				<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
+				<% end %>
+				<%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %><br>
 			</div>
-			<%= blog.body %><br>
-			<% if current_user == @user %>
-			<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
 			<% end %>
-			<%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %><br>
 		</div>
-		<% end %>
+		<div class="user-side-right">
+		</div>
 	</div>
-	<div class="user-side-right">
-	</div>
-</div>
 
 
 

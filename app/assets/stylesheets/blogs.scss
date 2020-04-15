@@ -87,15 +87,20 @@ img.blog_slick-image{
 	text-align: center;
 }
 
+
+
+.blog-new-box{
+	width: 100%;
+}
+
 .new-box{
 	width: 100%;
 	height:500px;
-	padding-top: 50px;
 }
 
 .new-form{
 	width: 45%;
-	margin:0 auto;
+	margin:50px auto;
 	border:solid 1px black;
 	background-color:#CCFFFF;
 }
@@ -143,6 +148,20 @@ img.blog_slick-image{
 .blog-show-image{
 	display: flex;
     justify-content: center;
+}
+
+.blog-show-dm-btn{
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #FFF;
+  background: #03A9F4;/*色*/
+  border: solid 1px #0f9ada;/*線色*/
+  border-radius: 50px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 
 

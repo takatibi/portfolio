@@ -1,16 +1,16 @@
 <div class="blog-header">
 	<%= render "blogs/header",user: @user %>
 </div>
-<!-- サクセスメッセージ -->
-<% flash.each do |key, value| %>
-<%= content_tag(:div, value, class: "#{key}") %>
-<% end %>
 
 
 <div class="blog-main">
 	<div class="blog-side-left">
 	</div>
 	<div class="blog-center">
+		<!-- サクセスメッセージ -->
+		<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "#{key}") %>
+		<% end %>
 		<h1>Blog一覧ページ</h1>
 
 					<!-- ユーザーが投稿したブログ内容をeach文を回していく -->
