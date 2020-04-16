@@ -61,7 +61,7 @@ $(document).on("click", '.blog-image__operetion--delete', function(){
     $.each(file_field.files, function(i,input){
       //削除を押された要素と一致した時、index番号に基づいてdataBoxに格納された要素を削除する
       if(input.name==target_name){
-        dataBox.items.remove(i) 
+        dataBox.items.remove(i)
       }
     })
     //DataTransferオブジェクトに入ったfile一覧をfile_fieldの中に再度代入

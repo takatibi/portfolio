@@ -4,29 +4,20 @@
 
 
 <div class="follows-box">
-	<h3>フォロワー数<%= @users.followers.count %>人</h3>
-	<% @users.followers.each do |f| %>
+	<h3>フォロワー数<%= @user.followers.count %>人</h3>
+	<% @user.followers.each do |f| %>
 	<div class="follows-box2">
-		<%= attachment_image_tag f, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %><br>
+		<%= link_to user_path(f) do %>
+		<%= attachment_image_tag f, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
+		<% end %><br>
 
 		<strong>Name</strong><br>
 		<%= f.name %><br>
 
 		<!-- フォローボタン -->
-		<% if user_signed_in? %>
-			<% if current_user.followers?(f) and current_user.current_following?(f.id) and current_user != f %>
-				<%= form_for(current_user.relationships.find_by(follow_id: f.id), html: { method: :delete }) do |fo| %>
-					<%= hidden_field_tag :follow_id, f.id %>
-					<%= fo.submit "フォローを外す", class: "btn btn-danger" %>
-				<% end %>
-			<% elsif current_user != f %>
-				<%= form_for(current_user.relationships.build) do |fo| %>
-					<%= hidden_field_tag :follow_id, f.id %>
-					<%= fo.submit "フォローする",class: "btn btn-primary" %>
-				<% end %>
-			<% end %>
-		<% end %>
-
+		<div id="follow_form<%= f.id %>">
+			<%= render "users/follower",user: @user, f: f %>
+		</div>
 		<%= f.introduction %><br>
 	</div>
 	<% end %>

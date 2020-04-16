@@ -23,10 +23,9 @@
 
 		<!-- ユーザーのプロフィール情報 -->
 		<div class="show-box2">
-			<strong>Profile Image</strong><br>
 			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
 
-			<strong>Name</strong><br>
+			<strong>Name</strong> :
 			<%= @user.name %><br>
 			<strong>Introduction</strong><br>
 			<%= @user.introduction %><br>
@@ -34,34 +33,17 @@
 			<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
 			<% end %>
 
-			<!-- フォロー機能 -->
-			<% unless current_user == @user %>
-			<% if current_user.following?(@user) %>
-			<%= form_for(current_user.relationships.find_by(follow_id: @user.id), html: { method: :delete }) do |f| %>
-			<%= hidden_field_tag :follow_id, @user.id %>
-			<%= f.submit "フォローを外す", class: "btn btn-danger" %>
-			<% end %>
-			<% else %>
-			<%= form_for(current_user.relationships.build) do |f| %>
-			<%= hidden_field_tag :follow_id, @user.id %>
-			<%= f.submit "フォローする",class: "btn btn-primary" %>
-			<% end %>
-			<% end %>
-			<% end %>
-			<!-- フォロー数、フォロワー数 -->
-			<div class="follow-box">
-				<%= link_to following_user_path do %>
-				<span>フォロー数<%= @user.followings.count %>人</span>
-				<% end %>/
-				<%= link_to follower_user_path do %>
-				<span>フォロワー数<%= @user.followers.count %>人</span>
-				<% end %>
+			<!-- フォローボタン -->
+				<div id="follow_form<%= @user.id %>">
+					<%= render "users/follow", user: @user %>
+				</div>
 
+			<div class="follow-box">
 				<!-- チャット機能(DM) -->
 				<% if @user.id == current_user.id %>
 				<% else %>
 				<% if @isRoom == true %>
-				<p><a href="/rooms/ <%= @roomId %>" class="blog-show-dm-btn">
+				<p><a href="/rooms/<%= @roomId %>" class="blog-show-dm-btn">
 					<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 					</a>
 				</p>
@@ -70,7 +52,7 @@
 					<%= fields_for @entry do |e| %>
 					<%= e.hidden_field :user_id, :value => @user.id %>
 					<% end %>
-					<%= f.submit "チャットを始める" %>
+					<%= f.submit "チャットを始める", class:"blog-show-dm-btn" %>
 				<% end %>
 				<% end %>
 				<% end %>
@@ -91,10 +73,11 @@
 					</div>
 				</div>
 				<%= blog.body %><br>
+				<%= link_to "記事を見る",blog_path(blog),class:"btn btn-primary" %>
 				<% if current_user == @user %>
 				<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
 				<% end %>
-				<%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %><br>
+				<br><%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
 			</div>
 			<% end %>
 		</div>

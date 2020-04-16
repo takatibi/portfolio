@@ -6,48 +6,48 @@
 
 
 
-
-<!-- ブログ投稿フォーム -->
-<div class="blog-new-box">
-<%= form_for(@blog) do |f| %>
-<!-- 投稿失敗時のエラーメッセージ -->
 <div class="blog-main-new">
 	<h1>Blog投稿ページ</h1>
 	<div class="new-box">
 		<div class="new-form">
-			<div class="error-box">
-				<% if @blog.errors.any? %>
-				<h2><%= @blog.errors.count %>件のエラーが発生しました。</h2>
-				<% @blog.errors.full_messages.each do |error| %>
-				<%= error %><br>
-				<% end %>
-				<% end %>
+
+			<!-- ブログ投稿フォーム -->
+			<div class="blog-new-box">
+			<%= form_for(@blog) do |f| %>
+						<!-- 投稿失敗時のエラーメッセージ -->
+						<div class="error-box">
+							<% if @blog.errors.any? %>
+							<h2><%= @blog.errors.count %>件のエラーが発生しました。</h2>
+							<% @blog.errors.full_messages.each do |error| %>
+							<%= error %><br>
+							<% end %>
+							<% end %>
+						</div>
+						<div class="new-form-box">
+							<div class="new-img-box">
+							</div>
+							<div class="blog-num-0" id="image-box__container">
+								<div class="new-img">
+									<!-- multiple => truedeで配列で送れる。しなかったらデータが上書きされていた -->
+									<%= f.file_field :image ,id:"img-file", :multiple => true %>
+								</div>
+
+								<strong>Title</strong><br>
+								<%= f.text_field :title, :placeholder => "タイトル名", :size=>"55"%><br>
+								<strong>Blog</strong><br>
+								<%= f.text_area :body, :placeholder => "本文", :size=>"55x15" %><br>
+								<%= f.select :category, Blog.categories_i18n.keys.to_a, include_blank: true %>カテゴリー選択
+								<%#= f.collection_select :race, Race.all, :id, :name, prompt: true, include_blank: true %>
+
+								<div class="new-form-btn">
+									<%= f.submit "Create",class:"btn btn-success" %>
+								</div>
+							</div>
+			<% end %>
 			</div>
-			<div class="new-form-box">
-				<div class="new-img-box">
-				</div>
-				<div class="blog-num-0" id="image-box__container">
-					<div class="new-img">
-						<!-- multiple => truedeで配列で送れる。しなかったらデータが上書きされていた -->
-						<%= f.file_field :image ,id:"img-file", :multiple => true %>
-					</div>
-
-					<strong>Title</strong><br>
-					<%= f.text_field :title, :placeholder => "タイトル名", :size=>"55"%><br>
-					<strong>Blog</strong><br>
-					<%= f.text_area :body, :placeholder => "本文", :size=>"55x15" %><br>
-					<%= f.select :category, Blog.categories_i18n.keys.to_a, include_blank: true %>カテゴリー選択
-					<%#= f.collection_select :race, Race.all, :id, :name, prompt: true, include_blank: true %>
-
-					<div class="new-form-btn">
-						<%= f.submit "Create",class:"btn btn-success" %>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<% end %>
 </div>
 
 

@@ -36,8 +36,6 @@ class User < ApplicationRecord
   end
 
   def followers?(other_user)
-    p "------------------"
-    p self.followers
     self.followers.include?(other_user)
   end
 

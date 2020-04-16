@@ -14,7 +14,7 @@
 
 .blog-main{
 	display: flex;
-	background: linear-gradient(#fffde4, #005aa7, #fffde4, #005aa7);
+	background: linear-gradient(#fffde4, #005aa7);
 }
 
 .blog-center{
@@ -28,6 +28,10 @@
 
 .blog-side-left{
 	width: 500px;
+}
+
+.blog-title{
+	font-size: 20px;
 }
 
 
@@ -132,6 +136,11 @@ img.blog_slick-image{
 	text-align: center;
 	margin: 100px 0 ;
 	padding-bottom: 30px;
+}
+
+.blog-show-box2{
+	width: 80%;
+	margin:0 auto;
 }
 
 .show-comment-form{

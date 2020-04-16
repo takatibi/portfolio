@@ -1,0 +1,23 @@
+
+<% if user_signed_in? %>
+	<% if current_user.following?(f) and current_user != f  %>
+		<%= form_for(user.relationships.find_by(follow_id: f.id), html: { method: :delete }, remote: true) do |fo| %>
+			<%= hidden_field_tag :follow_id, f.id %>
+			<%= fo.submit "フォローを外す", class: "btn btn-danger" %>
+		<% end %>
+	<% elsif current_user != f %>
+		<%= form_for(current_user.relationships.build, remote:true) do |fo| %>
+			<%= hidden_field_tag :follow_id, f.id %>
+			<%= fo.submit "フォローする",class: "btn btn-primary" %>
+		<% end %>
+	<% end %>
+<% end %>
+
+
+
+<%= link_to following_user_path(user) do %>
+	<span>フォロー数<%= f.followings.count %>人</span>
+<% end %>/
+<%= link_to follower_user_path(user) do %>
+	<span>フォロワー数<%= f.followers.count %>人</span>
+<% end %>
