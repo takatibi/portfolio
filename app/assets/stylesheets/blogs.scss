@@ -92,14 +92,21 @@ img.blog_slick-image{
 }
 
 
-
 .blog-new-box{
 	width: 100%;
+	margin: 30px;
 }
 
 .new-box{
 	width: 100%;
 	height:500px;
+}
+
+.new-form-box{
+	display: flex;
+	margin: 2px;
+	// 指定した幅を超える場合、折り返しする
+	flex-flow: wrap;
 }
 
 .new-form{
@@ -109,8 +116,12 @@ img.blog_slick-image{
 	background-color:#CCFFFF;
 }
 
-.new-form-box{
-	padding:50px;
+.blog-image{
+	margin:3px;
+}
+
+.new-image{
+
 }
 
 .new-form-btn{
@@ -166,8 +177,8 @@ img.blog_slick-image{
   margin-top: 20px;
   text-decoration: none;
   color: #FFF;
-  background: #03A9F4;/*色*/
-  border: solid 1px #0f9ada;/*線色*/
+  background: #03A9F4;
+  border: solid 1px #0f9ada;
   border-radius: 50px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   text-shadow: 0 1px 0 rgba(0,0,0,0.2);

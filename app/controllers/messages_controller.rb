@@ -6,7 +6,6 @@ class MessagesController < ApplicationController
 		unless Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id]).present?
 			redirect_back(fallback_location: root_path)
 		end
-		#Messageモデルを生成と同時にデーターを保存
 		@message = Message.new(message_params)
 		@message.user_id = current_user.id
 		if @message.save

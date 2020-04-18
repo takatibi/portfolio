@@ -30,7 +30,7 @@ class BlogsController < ApplicationController
 			@blog = Blog.new(blog_params)
 			@blog.user_id = current_user.id
 			# 画像のパラメーターの内容が[:blog][:image]
-			if params[:blog][:image]
+			if  params[:blog][:image]
 				params[:blog][:image].each do |bi|
 					# 「build」は親の子要素を保存する。
 					@blog.images.build(image: bi)
@@ -48,9 +48,22 @@ class BlogsController < ApplicationController
 		end
 
 		def update
-			blog = Blog.find(params[:id])
-			blog.update(blog_params)
-			redirect_to blogs_path(blog)
+			@blog = Blog.find(params[:id])
+
+			if  params[:blog][:image]
+				@blog.images.destroy_all
+				params[:blog][:image].each do |bi|
+					# 「build」は親の子要素を保存する。
+				@blog.images.build(image: bi)
+				end
+			end
+
+			if @blog.update(blog_params)
+				flash[:notice] = "ブログ内容を編集しました"
+				redirect_to blogs_path
+			else
+				render action: :edit
+			end
 		end
 
 		def destroy
