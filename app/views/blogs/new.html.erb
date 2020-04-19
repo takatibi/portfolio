@@ -26,7 +26,7 @@
 				<div class="new-form-box">
 					<div class="blog-num-0" id="image-box__container"></div>
 				</div>
-				<div class="">
+				<div>
 					<div id="new-image-button" class="new-img-box">
 						<div class="new-img">
 							<!-- multiple => truedeで配列で送れる。しなかったらデータが上書きされていた -->
@@ -35,16 +35,18 @@
 						</div>
 					</div>
 						<strong>Title</strong><br>
-						<%= f.text_field :title, :placeholder => "タイトル名", :size=>"55"%><br>
+							<%= f.text_field :title, :placeholder => "タイトル名", :size=>"50" %><br>
 						<strong>Blog</strong><br>
-						<%= f.text_area :body, :placeholder => "本文", :size=>"55x15" %><br>
+							<%= f.text_area :body, :placeholder => "本文", :size=>"50x15" %><br>
+						<strong>Place</strong><br>
+							<%= f.text_field :map, :placeholder => "場所", :size=>"50" %><br>
 						<%= f.select :category, Blog.categories_i18n.keys.to_a, include_blank: true %>カテゴリー選択
 						<%#= f.collection_select :race, Race.all, :id, :name, prompt: true, include_blank: true %>
 
 						<div class="new-form-btn">
 							<%= f.submit "Create", id:"submit-btn", class:"btn btn-success" %>
 						</div>
-					</div>
+				</div>
 					<% end %>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 
 $(function(){
-  //DataTransferオブジェクトで、データを格納する箱を作る
+  //DataTransferオブジェクトで、データを格納する箱を作る。「formタグの様なもの」
   var dataBox = new DataTransfer();
   //querySelectorでfile_fieldを取得
   var file_field = document.querySelector('input[type=file]')
@@ -13,9 +13,9 @@ $(function(){
       //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
       var fileReader = new FileReader();
 
-      //DataTransferオブジェクトに対して、fileを追加
+      //「DataTransfer」の「items」に対して、「file」をeach文で１ファイルずつ追加している。
       dataBox.items.add(file)
-      //DataTransferオブジェクトに入ったfile一覧をfile_fieldの中に代入
+      //DataTransferに入った画像ファイルをfile_fieldの中に代入して反映させている。
       file_field.files = dataBox.files
 
       var num = $('.blog-image').length + 1 + i
@@ -32,6 +32,7 @@ $(function(){
       //読み込みが完了すると、srcにfileのURLを格納
       fileReader.onloadend = function() {
         var src = fileReader.result
+        // railsはsubmit（保存）しないと画像の個数や画像のデータが分からないので、JavaScript側でhtmlを作成してプレビューを画面に反映させている
         var html= `<div class='blog-image' data-image="${file.name}">
                     <div class=' blog-image__content'>
                     <div class='blog-image__content--icon'>

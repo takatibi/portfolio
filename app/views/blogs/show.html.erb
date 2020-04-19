@@ -22,19 +22,87 @@
 			<strong>Title</strong><br>
 			<strong class="blog-title"><%= @blog.title %></strong><br>
 
+			<hr>
 			<div class="blog-show-image">
 				<div class="blog_slick">
 					<% @blog.images.each do |bi| %>
 					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
 					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
 					<%= image_tag(bi.image_url, size:'400x250',class:"blog_slick-image") if bi.image_url %>
-					<% end %><br>
+					<% end %>
 				</div>
 			</div>
 
 
 			<strong>Body</strong><br><div class="blog-body"><%= @blog.body %></div><br>
 			<%= @blog.created_at.strftime('%Y/%m/%d') %><br>
+
+
+
+<!-- 地図機能 -->
+
+<% if @blog.map? %>
+<hr>
+
+<h2>Place</h2>
+
+<div id='map'>
+</div>
+
+<style>
+#map{
+  height: 400px;
+}
+</style>
+
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
+
+let map
+let geocoder
+
+function initMap(){
+  // geocoderを初期化
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %>},
+  zoom: 15
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+
+  // geocodingしたあとmapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+　　　　　　　　　　　　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+
+　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQLzPQuodtRB0jBfgYbK_8fSdBDbWa-so&callback=initMap" async defer></script>
+
+
+<% end %>
+
+<hr>
+
+
 
 			<!-- コメント数、ブログの編集と削除ボタン -->
 			<% if current_user == @user %>
@@ -64,7 +132,7 @@
 			<% if user_signed_in? %>
 			<div class="show-comment-form">
 				<%= form_with(model: [@blog, @comment],remote: true) do |comment| %>
-				<%= comment.text_area :comment, placeholder:"コメントを入力",:size=>"70x10" %><br>
+				<%= comment.text_area :comment, placeholder:"コメントを入力",:size=>"50x10" %><br>
 			</div>
 			<%= comment.submit "コメントを送信",class:"btn btn-success"%>
 			<% end %>

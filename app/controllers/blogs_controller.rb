@@ -20,11 +20,20 @@ class BlogsController < ApplicationController
 			@blog = Blog.find(params[:id])
 			@user = @blog.user
 			@comment = Comment.new
+
+			if @blog.map?
+			# Geocoderで対象の場所の検索。
+			results = Geocoder.search(@blog.map)
+			# first.coordinatesは検索結果の最初の緯度軽度を表す
+			@latlng = results.first.coordinates
+			end
 		end
 
 		def edit
 			@blog = Blog.find(params[:id])
 		end
+
+
 
 		def create
 			@blog = Blog.new(blog_params)
@@ -73,8 +82,9 @@ class BlogsController < ApplicationController
 		end
 
 	private
+
 		def blog_params
-			params.require(:blog).permit(:title, :body ,:category)
+			params.require(:blog).permit(:title, :body, :category, :map)
 		end
 
 end
