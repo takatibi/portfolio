@@ -20,7 +20,7 @@
 						<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
 						<% end %>
 						<strong>Name:<%= link_to blog.user.name ,user_path(blog.user) %></strong><br>
-						
+
 						<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
 						<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
 						<div class="blog_slick">
@@ -41,8 +41,6 @@
 							<!-- enumのキーを渡している -->
 							Category:<%= link_to blog.category_i18n ,blogs_path(:category => blog.category)
 							%>
-						<div class="index-box-bottom">
-						</div>
 					</div>
 				<% end %>
 				<div class="kaminari">

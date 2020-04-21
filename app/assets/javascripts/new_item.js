@@ -1,14 +1,31 @@
 
 $(function(){
-  //DataTransferオブジェクトで、データを格納する箱を作る。「formタグの様なもの」
+
+  // 画像が選択される前に選択されていた画像。
+  var previous_files;
+  //「DataTransfer」オブジェクトで、データを格納する箱を作る。「formタグの様なもの」
   var dataBox = new DataTransfer();
-  //querySelectorでfile_fieldを取得
+  //「querySelector」でfile_fieldを取得
   var file_field = document.querySelector('input[type=file]')
+
+  // ボタンをクリックした時に発火されるイベント
+  $('#img-file').click(function () {
+    // すでに選択されている画像をpropで所得して保持する
+    previous_files = $('input[type="file"]').prop('files');
+
   //fileが選択された時に発火するイベント
-  $('#img-file').change(function(){
-    var dataBox = new DataTransfer();
+  }).change(function(){
+    // データをクリアにている。
+    dataBox.clearData();
     //選択したfileのオブジェクトをpropで取得
-    var files = $('input[type="file"]').prop('files')[0];
+    var files = $('input[type="file"]').prop('files');
+
+    // 前回まで選択されていた画像を「DataTransfer」に保持している
+    $.each(previous_files, function(i, file){
+      dataBox.items.add(file);
+    });
+
+    // 今回選択された画像をイーチで回す
     $.each(this.files, function(i, file){
       //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
       var fileReader = new FileReader();
@@ -20,11 +37,11 @@ $(function(){
 
       var num = $('.blog-image').length + 1 + i
       fileReader.readAsDataURL(file);
-      　　　 //画像が10枚になったら超えたらドロップボックスを削除する
+      //画像が10枚になったら超えたらドロップボックスを削除する
       if (num >= 10){
         $('#new-image-button').css('display', 'none')
       }
-        // disabledでボタン押せなくさせる
+      // disabledでボタン押せなくさせる
       if (num > 10){
         $('#submit-btn').attr('disabled', 'disabled')
       }
@@ -50,11 +67,13 @@ $(function(){
       //image-box__containerのクラスを変更し、CSSでドロップボックスの大きさを変えてやる。
       $('#image-box__container').attr('class', `blog-num-${num}`)
     });
-    dataBox.clearData();
+
   });
+
 
   //削除ボタンをクリックすると発火するイベント
   $(document).on("click", '.blog-image__operetion--delete', function(){
+
   //削除を押されたプレビュー要素を取得
   var target_image = $(this).parent().parent()
   //削除を押されたプレビューimageのfile名を取得
@@ -71,25 +90,24 @@ $(function(){
     $('#submit-btn').attr('disabled', false)
   }
 
+
   //プレビューがひとつだけの場合、file_fieldをクリア
   if(file_field.files.length==1){
     //inputタグに入ったファイルを削除
     $('input[type=file]').val(null)
-    dataBox.clearData();
-    console.log(dataBox)
+    // dataBox.clearData();
   }else{
     //プレビューが複数の場合
     $.each(file_field.files, function(i,input){
       //削除を押された要素と一致した時、index番号に基づいてdataBoxに格納された要素を削除する
       if(input.name==target_name){
-        console.log(i)
         dataBox.items.remove(i)
       }
     })
     //DataTransferオブジェクトに入ったfile一覧をfile_fieldの中に再度代入
     file_field.files = dataBox.files
   }
-  dataBox.clearData();
+
 
   //プレビューを削除
   target_image.remove()
@@ -99,14 +117,7 @@ $(function(){
   $('#image-box__container').attr('class', `blog-num-${num}`)
 })
 
-
-  //削除ボタンをクリックすると発火するイベント
-  $(document).on("click", '.blog-image__operetion--delete', function(){
-    //プレビュー要素を取得
-    var target_image = $(this).parent().parent()
-    //プレビューを削除
-    target_image.remove();
-    //inputタグに入ったファイルを削除
-    file_field.val("")
-  })
 });
+
+
+

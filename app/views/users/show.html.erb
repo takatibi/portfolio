@@ -68,7 +68,7 @@
 				<div class="blog-show-image">
 					<div class="blog_slick">
 						<% blog.images.each do |bi| %>
-						<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
+						<%= image_tag(bi.image_url, size:'300x200',class:"user_slick-image") if bi.image_url %>
 						<% end %>
 					</div>
 				</div>

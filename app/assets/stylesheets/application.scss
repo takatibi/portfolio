@@ -24,6 +24,10 @@
 	box-sizing:border-box;
 }
 
+html, body{
+    height: 100%;
+}
+
 .notice{
   width: 400px;
   margin:20px auto;
@@ -52,15 +56,22 @@
   text-align: center;
 }
 
+.header h1, p{
+  color: white;
+  text-shadow:3px 3px 3px black;
+}
+
+.header h1{
+  padding-top: 20px;
+}
+
 .header-link{
   margin-top: 20px;
 	color:white;
 }
 
-.header-search{
-  margin: 20px;
-  text-align: center;
-}
+
+
 
 .img-photo{
 	border-radius: 50%;

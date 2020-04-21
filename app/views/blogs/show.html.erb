@@ -3,12 +3,15 @@
 </div>
 
 
-
-
 <div class="blog-show-main">
 	<div class="blog-side-left">
 	</div>
 	<div class="blog-show-box">
+				<!-- サクセスメッセージ -->
+		<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "#{key}") %>
+		<% end %>
+
 		<div class="blog-show-box2">
 			<h1>詳細ページ</h1>
 			<!-- このblogの情報 -->
@@ -39,68 +42,68 @@
 
 
 
-<!-- 地図機能 -->
+			<!-- 地図機能 -->
 
-<% if @blog.map? %>
-<hr>
+			<% if @blog.map? %>
+			<hr>
 
-<h2>Place</h2>
+			<h2>Place</h2>
 
-<div id='map'>
-</div>
+			<div id='map'>
+			</div>
 
-<style>
-#map{
-  height: 400px;
-}
-</style>
+			<style>
+			#map{
+			  height: 400px;
+			}
+			</style>
 
-<script>
-/*
-mapを関数の外で定義(codeAddressでも使うため)
-geocoderを用意
-*/
+			<script>
+			/*
+			mapを関数の外で定義(codeAddressでも使うため)
+			geocoderを用意
+			*/
 
-let map
-let geocoder
+			let map
+			let geocoder
 
-function initMap(){
-  // geocoderを初期化
-  geocoder = new google.maps.Geocoder()
+			function initMap(){
+			  // geocoderを初期化
+			  geocoder = new google.maps.Geocoder()
 
-  map = new google.maps.Map(document.getElementById('map'), {
-  center: {lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %>},
-  zoom: 15
-  });
-}
+			  map = new google.maps.Map(document.getElementById('map'), {
+			  center: {lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %>},
+			  zoom: 15
+			  });
+			}
 
-function codeAddress(){
-  // 入力を取得
-  let inputAddress = document.getElementById('address').value;
+			function codeAddress(){
+			  // 入力を取得
+			  let inputAddress = document.getElementById('address').value;
 
-  // geocodingしたあとmapを移動
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-　　　　　　　　　　　　// map.setCenterで地図が移動
-      map.setCenter(results[0].geometry.location);
+			  // geocodingしたあとmapを移動
+			  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+			    if (status == 'OK') {
+			　　　　　　　　　　　　// map.setCenterで地図が移動
+			      map.setCenter(results[0].geometry.location);
 
-　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQLzPQuodtRB0jBfgYbK_8fSdBDbWa-so&callback=initMap" async defer></script>
+			　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+			      var marker = new google.maps.Marker({
+			          map: map,
+			          position: results[0].geometry.location
+			      });
+			    } else {
+			      alert('Geocode was not successful for the following reason: ' + status);
+			    }
+			  });
+			}
+			</script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQLzPQuodtRB0jBfgYbK_8fSdBDbWa-so&callback=initMap" async defer></script>
 
 
-<% end %>
+			<% end %>
 
-<hr>
+			<hr>
 
 
 
@@ -132,7 +135,7 @@ function codeAddress(){
 			<% if user_signed_in? %>
 			<div class="show-comment-form">
 				<%= form_with(model: [@blog, @comment],remote: true) do |comment| %>
-				<%= comment.text_area :comment, placeholder:"コメントを入力",:size=>"50x10" %><br>
+				<%= comment.text_area :comment, placeholder:"コメントを入力" %><br>
 			</div>
 			<%= comment.submit "コメントを送信",class:"btn btn-success"%>
 			<% end %>

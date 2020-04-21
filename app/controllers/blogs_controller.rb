@@ -13,7 +13,6 @@ class BlogsController < ApplicationController
 				@blogs = Blog.page(params[:page]).reverse_order
 			end
 			@categories = Blog.categories
-			@category = params[:category]
 		end
 
 		def show
@@ -69,7 +68,7 @@ class BlogsController < ApplicationController
 
 			if @blog.update(blog_params)
 				flash[:notice] = "ブログ内容を編集しました"
-				redirect_to blogs_path
+				redirect_to blog_path(@blog)
 			else
 				render action: :edit
 			end

@@ -6,7 +6,19 @@
 <div class="search-main">
 	<!-- 検査した内容 -->
 	<div class="search_results">
-		<h2>「<%= @seach %>」の検索結果</h2>
+		<% if params[:search_model] %>
+			<h2>「<%= @seach %>」の検索結果</h2>
+		<% elsif %>
+			<h2>検索画面</h2>
+		<% end %>
+	</div>
+
+	<div class="header-search">
+		<%= form_tag(search_path,:method => "get") do %>
+		<%= text_field_tag :seach_content %>
+		<%= select_tag :search_model, options_for_select([["User","user"],["Blog","blog"]]) %>
+		<%= submit_tag "検索" %>
+		<% end %>
 	</div>
 
 
@@ -43,8 +55,8 @@
 
 			<div class="blog_slick">
 				<% blog.images.each do |bi| %>
-				<%= image_tag(bi.image_url, size:'300x200') if bi.image_url %>
-				<% end %><br>
+				<%= image_tag(bi.image_url) if bi.image_url %>
+				<% end %>
 			</div>
 
 			<!-- ブログ内容 -->

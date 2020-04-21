@@ -8,8 +8,8 @@
 
 <div class="blog-main-new">
 	<h1>Blog投稿ページ</h1>
-	<div class="new-box">
-		<div class="new-form">
+	<div class="blog-new-box">
+		<div class="blog-new-form">
 
 			<!-- ブログ投稿フォーム -->
 			<div class="blog-new-box">
@@ -23,7 +23,7 @@
 					<% end %>
 					<% end %>
 				</div>
-				<div class="new-form-box">
+				<div class="blog-new-form-box">
 					<div class="blog-num-0" id="image-box__container"></div>
 				</div>
 				<div>
@@ -31,7 +31,7 @@
 						<div class="new-img">
 							<!-- multiple => truedeで配列で送れる。しなかったらデータが上書きされていた -->
 							<%= f.file_field :image ,id:"img-file", class:'hidden', :multiple => true %>
-							<label for="img-file", class="btn btn-primary">写真選択（10枚まで）</label>
+							<label for="img-file" class="btn btn-primary">写真選択（10枚まで）</label>
 						</div>
 					</div>
 						<strong>Title</strong><br>
@@ -40,14 +40,14 @@
 							<%= f.text_area :body, :placeholder => "本文", :size=>"50x15" %><br>
 						<strong>Place</strong><br>
 							<%= f.text_field :map, :placeholder => "場所", :size=>"50" %><br>
-						<%= f.select :category, Blog.categories_i18n.keys.to_a, include_blank: true %>カテゴリー選択
-						<%#= f.collection_select :race, Race.all, :id, :name, prompt: true, include_blank: true %>
+							<strong>Category</strong><br>
+						<%= f.select :category, Blog.categories_i18n.keys.to_a, include_blank: true %>
 
 						<div class="new-form-btn">
 							<%= f.submit "Create", id:"submit-btn", class:"btn btn-success" %>
 						</div>
 				</div>
-					<% end %>
+				<% end %>
 				</div>
 			</div>
 		</div>
