@@ -77,8 +77,12 @@ html, body{
 	border-radius: 50%;
 }
 
+
+
+// ログイン、サインイン画面
+
 .log{
-  background: url(80.3.jpg) no-repeat center;
+  background: image-url(80.3.jpg) no-repeat center;
   width: 100%;
   height: 900px;
   background-size: cover;
@@ -127,6 +131,8 @@ html, body{
 }
 
 
+
+// スライダー
 .blog_slick{
   width: 500px;
 
@@ -139,11 +145,34 @@ html, body{
 
 
 
+// カミナリ
 .kaminari{
   background-color: white;
   margin-bottom: 30px;
 }
 
+
+
+
+// ハンバーガーメニュー
+
+.wrap {
+  position: relative;
+}
+
+// メニューdivの初期位置を指定
+.wrap .icon_link_tab {
+  position: absolute;
+  top: 0;
+  right: -300px;
+  transition: 0.3s ease-out;
+}
+
+// バーガーアイコンクリック時の追加CSS
+.wrap .icon_link_tab.open {
+  right: 0;
+  transition: 0.3s ease-out;
+}
 
 
 
