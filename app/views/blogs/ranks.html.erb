@@ -1,0 +1,27 @@
+<div class="ranks-main">
+	<div class="ranks-header">
+		<%= render "blogs/header",user: @user %>
+	</div>
+
+	<div class="ranks-box">
+		<h1>いいね <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> </span>ランキング</h1>
+
+
+		<% @ranks.each.with_index(1) do|blog,i| %>
+			<h3>第<%= i %>位</h3><br>
+
+			<%= link_to user_path(blog.user) do %>
+				<%= attachment_image_tag blog.user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'150x150',class:"img-photo" %>
+			<% end %><br>
+
+				<strong>User名</strong><br>
+				<%= blog.user.name %><br>
+
+				<strong>タイトル名</strong><br>
+
+			<%= link_to blog_path(blog) do %>
+				<%= blog.title %><br>
+			<% end %><hr>
+		<% end %>
+	</div>
+</div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/edit'
   get 'users/new'
+  get 'blogs/ranks'
   get 'search' => "search#search"
   root to: 'home#top'
   devise_for :users

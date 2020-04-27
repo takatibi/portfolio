@@ -7,6 +7,7 @@ class BlogsController < ApplicationController
 		end
 
 		def index
+			# blank? = 空白か否か
 			unless params[:category].blank?
 				@blogs = Blog.where(category: params[:category]).page(params[:page]).reverse_order
 			else
@@ -30,6 +31,11 @@ class BlogsController < ApplicationController
 
 		def edit
 			@blog = Blog.find(params[:id])
+		end
+
+		def ranks
+			# 記事の番号(blog_id)が同じものにグループを分ける。order('count(blog_id) desc')番号の多い順に並び替える。:blog_idカラムのみを数字で取り出すように指定。
+			@ranks = Blog.find(Favorite.group(:blog_id).order('count(blog_id) desc').limit(3).pluck(:blog_id))
 		end
 
 

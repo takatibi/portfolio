@@ -12,6 +12,8 @@
 	background-position: center;
 }
 
+// index
+
 .blog-main{
 	display: flex;
 	background: linear-gradient(#fffde4, #005aa7);
@@ -64,6 +66,8 @@ img.blog_slick-image{
 }
 
 
+// カテゴリー
+
 .category-box{
 	width: 250px;
 	border: solid 2px black;
@@ -82,8 +86,25 @@ img.blog_slick-image{
 
 }
 
+// ランキング
+
+.blog-ranks-box{
+	width: 250px;
+	border: solid 2px black;
+	margin:20px 0 100px 80px;
+	background-color: white;
+	text-align: center;
+}
+
+.blog-ranks-box h3{
+	border-bottom: solid 2px black;
+	padding-bottom: 20px;
+}
 
 
+
+
+// new
 
 .blog-main-new{
 	background: linear-gradient(#fffde4, #005aa7);
@@ -127,13 +148,15 @@ img.blog_slick-image{
 
 
 
-
+// コメント
 
 #comment_comment{
         width: 80%;
     }
 
 
+
+// show
 
 .blog-show-main{
 	display: flex;
@@ -181,7 +204,7 @@ img.blog_slick-image{
 }
 
 
-
+// edit
 
 .blog-edit-main h1{
 	text-align: center;
