@@ -9,8 +9,9 @@
 	<div class="blog-center">
 		<!-- サクセスメッセージ -->
 		<% flash.each do |key, value| %>
-		<%= content_tag(:div, value, class: "#{key}") %>
+			<%= content_tag(:div, value, class: "#{key}") %>
 		<% end %>
+
 		<h1>Blog一覧ページ</h1>
 
 					<!-- ユーザーが投稿したブログ内容をeach文を回していく -->
@@ -25,7 +26,7 @@
 						<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
 						<div class="blog_slick">
 							<% blog.images.each do |bi| %>
-							<%= image_tag(bi.image_url, size:'300x200' ,class:"blog_slick-image") if bi.image_url %>
+								<%= image_tag(bi.image_url, size:'300x200' ,class:"blog_slick-image") if bi.image_url %>
 							<% end %>
 						</div>
 
@@ -33,7 +34,7 @@
 						<strong class="blog-title"><%= blog.title %></strong><br>
 						<div id="links_buttons_<%= blog.id %>">
 							<% if user_signed_in? %>
-							<%= render partial: "blogs/link", locals: {blog: blog} %>
+								<%= render partial: "blogs/link", locals: {blog: blog} %>
 							<% end %>
 						</div>
 						<%= blog.comments.count %>コメント<br>

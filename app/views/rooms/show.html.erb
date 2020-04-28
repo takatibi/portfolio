@@ -3,39 +3,39 @@
 	<h1>DMページ</h1>
 
 	<h4>参加者</h4>
-	<% @entries.each do |e| %>
-	<h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.name %>さん</a></strong></h5>
-	<% end %>
+		<% @entries.each do |e| %>
+			<h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.name %>さん</a></strong></h5>
+		<% end %><hr>
 
-	<hr>
 		<!-- サクセスメッセージ -->
 		<% flash.each do |key, value| %>
-		<%= content_tag(:div, value, class: "#{key}") %>
+			<%= content_tag(:div, value, class: "#{key}") %>
 		<% end %>
+
 		<!-- エラーメッセージ -->
 		<div class="error-box">
 			<% if @message.errors.any? %>
 				<h2><%= @message.errors.count %>件のエラーが発生しました。</h2>
 					<% @message.errors.full_messages.each do |error| %>
-					<%= error %><br>
+						<%= error %><br>
 					<% end %>
 			<% end %>
 		</div>
 
 	<% if @messages.present? %>
-	<% @messages.each do |m| %>
-	<strong><%= m.content %></strong>
-	<small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.name %>さん</a></strong></small>
-	<hr>
-	<% end %>
+		<% @messages.each do |m| %>
+			<strong><%= m.content %></strong>
+			<small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.name %>さん</a></strong></small>
+			<hr>
+		<% end %>
 	<% else %>
-	<h3 class="room-text-center">メッセージはまだありません</h3>
+		<h3 class="room-text-center">メッセージはまだありません</h3>
 	<% end %>
 
 	<%= form_for [@room, @message] do |f| %>
-	<%= f.text_field :content, :placeholder => "メッセージを入力してください" ,:size => 70 %>
-	<%= f.hidden_field :room_id, :value => @room.id %>
-	<br>
-	<%= f.submit "メッセージを送る", class:"btn btn-success room-show-btn" %>
+		<%= f.text_field :content, :placeholder => "メッセージを入力してください" ,:size => 70 %>
+		<%= f.hidden_field :room_id, :value => @room.id %>
+		<br>
+		<%= f.submit "メッセージを送る", class:"btn btn-success room-show-btn" %>
 	<% end %>
 </div>

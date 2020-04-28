@@ -9,7 +9,7 @@
 	<div class="blog-show-box">
 				<!-- サクセスメッセージ -->
 		<% flash.each do |key, value| %>
-		<%= content_tag(:div, value, class: "#{key}") %>
+			<%= content_tag(:div, value, class: "#{key}") %>
 		<% end %>
 
 		<div class="blog-show-box2">
@@ -29,9 +29,9 @@
 			<div class="blog-show-image">
 				<div class="blog_slick">
 					<% @blog.images.each do |bi| %>
-					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
-					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-					<%= image_tag(bi.image_url, size:'400x250',class:"blog_slick-image") if bi.image_url %>
+						<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+						<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+						<%= image_tag(bi.image_url, size:'400x250',class:"blog_slick-image") if bi.image_url %>
 					<% end %>
 				</div>
 			</div>
@@ -53,9 +53,9 @@
 			</div>
 
 			<style>
-			#map{
-			  height: 400px;
-			}
+				#map{
+				  height: 400px;
+				}
 			</style>
 
 			<script>
@@ -109,18 +109,18 @@
 
 			<!-- コメント数、ブログの編集と削除ボタン -->
 			<% if current_user == @user %>
-			<%= link_to "編集", edit_blog_path(@blog.id), class:"btn btn-primary" %>
-			<%= link_to "記事を消す",blog_path(@blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
+				<%= link_to "編集", edit_blog_path(@blog.id), class:"btn btn-primary" %>
+				<%= link_to "記事を消す",blog_path(@blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
 			<% end %>
 
 			<!-- いいね機能 -->
 			<% if user_signed_in? %>
-			<div class="show-link-box">
-				<strong>いいね!ボタン</strong><br>
-				<div id="links_buttons_<%= @blog.id %>">
-					<%= render "blogs/link",blog: @blog %>
+				<div class="show-link-box">
+					<strong>いいね!ボタン</strong><br>
+					<div id="links_buttons_<%= @blog.id %>">
+						<%= render "blogs/link",blog: @blog %>
+					</div>
 				</div>
-			</div>
 			<% end %>
 
 
@@ -133,11 +133,11 @@
 
 			<!-- コメント入力フォーム -->
 			<% if user_signed_in? %>
-			<div class="show-comment-form">
-				<%= form_with(model: [@blog, @comment],remote: true) do |comment| %>
-				<%= comment.text_area :comment, placeholder:"コメントを入力" %><br>
-			</div>
-			<%= comment.submit "コメントを送信",class:"btn btn-success"%>
+				<div class="show-comment-form">
+					<%= form_with(model: [@blog, @comment],remote: true) do |comment| %>
+					<%= comment.text_area :comment, placeholder:"コメントを入力" %><br>
+				</div>
+				<%= comment.submit "コメントを送信",class:"btn btn-success"%>
 			<% end %>
 			<% end %>
 		</div>

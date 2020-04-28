@@ -5,7 +5,7 @@
 <!-- コメント一覧 -->
 
 <% blog.comments.each do |comments| %>
-	<hr>
+<hr>
 	<%= comments.user.name %><br>
 	<%= comments.comment %><br>
 	<%= comments.created_at.strftime('%Y/%m/%d') %><br>
@@ -14,6 +14,6 @@
 <!-- コメント削除ボタン -->
 	<% if current_user == comments.user %>
 		<%= link_to "コメントを削除",blog_comments_path(blog_id: comments.id),class:"btn btn-danger", method: :delete,"data-confirm"=> "本当に削除しますか？",remote: true %><br>
-		<% end %>
 	<% end %>
-	<hr>
+<% end %>
+<hr>
