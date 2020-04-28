@@ -21,6 +21,14 @@ describe 'userのテスト' do
 				visit edit_user_path(user)
 				expect(page).to have_content "User編集"
 			end
+			it 'フォームの表示' do
+				visit edit_user_path(user)
+				expect(page).to have_field "user[name]"
+			end
+			it 'フォームの表示' do
+				visit edit_user_path(user)
+				expect(page).to have_field "user[introduction]"
+			end
 		end
 	end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Blogのテスト' do
 	let(:blog) {FactoryBot.create(:blog, user: user)}
 	let(:user) {FactoryBot.create(:user)}
-	# FactoryBotテストで使うテストデータを扱える。createとすることによってデータを作成できる。
+	# FactoryBotでテストで使うテストデータを扱える。createとすることによってデータを作成できる。
 
 	describe '一覧画面のテスト' do
 		context '画面の表示' do
@@ -31,6 +31,26 @@ describe 'Blogのテスト' do
 				visit edit_blog_path(blog)
 				expect(page).to have_content "編集ページ"
 			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[image][]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[title]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[body]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[map]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[category]"
+			end
 		end
 	end
 
@@ -38,12 +58,48 @@ describe 'Blogのテスト' do
 		before { sign_in user }
 
 		context '画面の表示' do
+
 			it 'Blog投稿ページと表示させる' do
 				visit new_blog_path
 				expect(page).to have_content "Blog投稿ページ"
 			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[image][]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[title]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[body]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[map]"
+			end
+			it 'フォームの表示' do
+				visit edit_blog_path(blog)
+				expect(page).to have_field "blog[category]"
+			end
 		end
 	end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
