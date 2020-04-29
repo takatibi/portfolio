@@ -3,6 +3,7 @@
 	<h1>DMページ</h1>
 
 	<h4>参加者</h4>
+		<!-- ルームに入っているUserの名前 -->
 		<% @entries.each do |e| %>
 			<h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.name %>さん</a></strong></h5>
 		<% end %><hr>
@@ -22,6 +23,7 @@
 			<% end %>
 		</div>
 
+		<!-- メッセージの内容 -->
 	<% if @messages.present? %>
 		<% @messages.each do |m| %>
 			<strong><%= m.content %></strong>
@@ -32,6 +34,7 @@
 		<h3 class="room-text-center">メッセージはまだありません</h3>
 	<% end %>
 
+	<!-- メッセージのフォーム -->
 	<%= form_for [@room, @message] do |f| %>
 		<%= f.text_field :content, :placeholder => "メッセージを入力してください" ,:size => 70 %>
 		<%= f.hidden_field :room_id, :value => @room.id %>
