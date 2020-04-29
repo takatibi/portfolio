@@ -18,9 +18,17 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+
+// スライダー
+
 $(function(){
 	$('.blog_slick').slick({
 		autoplay:true,
 		dots:true,
 	});
 });
+
+
+
+
+
