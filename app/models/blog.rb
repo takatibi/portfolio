@@ -22,6 +22,7 @@ class Blog < ApplicationRecord
 		北アメリカ: 3,
 		南アメリカ: 4,
 		オセアニア: 5,
+		南極: 6,
 	}
 
 	def self.search(search)
