@@ -1,3 +1,4 @@
+require 'base64'
 class BlogsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :edit, :update]
 
@@ -47,7 +48,7 @@ class BlogsController < ApplicationController
 			if  params[:blog][:image]
 				params[:blog][:image].each do |bi|
 					# 「build」は親の子要素を保存する。
-					@blog.images.build(image: bi)
+					@blog.images.build(image: Base64.decode64(bi))
 				end
 			else
 				@blog.images.build()
@@ -68,7 +69,7 @@ class BlogsController < ApplicationController
 				@blog.images.destroy_all
 				params[:blog][:image].each do |bi|
 					# 「build」は親の子要素を保存する。
-				@blog.images.build(image: bi)
+				@blog.images.build(image: Base64.decode64(bi))
 				end
 			end
 

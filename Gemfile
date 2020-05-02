@@ -58,6 +58,7 @@ group :test do
   gem "factory_bot_rails"
   gem 'faker'
   gem 'selenium-webdriver'
+  gem 'webdrivers'
   # Easy installation and use of chromedriver to run system tests with Chrome
 end
 
@@ -86,6 +87,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
 gem 'carrierwave'
+gem 'carrierwave-base64'
+
 gem 'mini_magick'
 gem 'kaminari','~> 1.1.1'
 gem 'rails-i18n'

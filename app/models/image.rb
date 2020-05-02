@@ -1,5 +1,5 @@
 class Image < ApplicationRecord
 	belongs_to :blog, optional: true
-	mount_uploader :image, ImageUploader
+	mount_base64_uploader :image, ImageUploader
 	validates :image,presence: true
 end
