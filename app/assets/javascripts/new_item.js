@@ -163,7 +163,7 @@ $(function(){
   }
 
   function createInputTag(text, filename){
-    var input = $("<input type=text name='blog[image][]'>")
+    var input = $("<input type=hidden name='blog[image][]'>")
     input.attr("data-file_name", filename)
     input.val(text)
 
