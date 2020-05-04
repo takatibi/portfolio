@@ -38,11 +38,11 @@
 					</div>
 					<div id="image-text-area"></div>
 						<strong>Title</strong><br>
-							<%= f.text_field :title, :placeholder => "タイトル名", :size=>"50" %><br>
+							<%= f.text_field :title,class:"text-field", :placeholder => "タイトル名" %><br>
 						<strong>Blog</strong><br>
-							<%= f.text_area :body, :placeholder => "本文", :size=>"50x15" %><br>
+							<%= f.text_area :body,class:"text-field", :placeholder => "本文", :size=>"50x15" %><br>
 						<strong>Place</strong><br>
-							<%= f.text_field :map, :placeholder => "場所", :size=>"50" %><br>
+							<%= f.text_field :map,class:"text-field", :placeholder => "場所", :size=>"50" %><br>
 							<strong>Category</strong><br>
 						<%= f.select :category, Blog.categories_i18n.keys.to_a, include_blank: true %>
 

@@ -86,7 +86,7 @@ $(function(){
 
         var text = imageChenge(src)
         createInputTag(text, file.name)
-        
+
       };
       //image-box__containerのクラスを変更し、CSSでドロップボックスの大きさを変えてやる。
       $('#image-box__container').attr('class', `blog-num-${num}`)
@@ -146,14 +146,6 @@ $(function(){
     $('#image-box__container').attr('class', `blog-num-${num}`)
   });
 
-  function convertArray2FileList(array){
-    var formData = new FormData();
-    for(var i = 0; i < array.length; i++){
-      formData.append("files[]", array[i]);
-    }
-    return formData.get("files");
-  }
-
 
 
 
@@ -161,6 +153,7 @@ $(function(){
     var text = window.btoa(imege)
     return text
   }
+
 
   function createInputTag(text, filename){
     var input = $("<input type=hidden name='blog[image][]'>")
@@ -171,6 +164,7 @@ $(function(){
     area.append(input)
   }
 
+    // 削除ボタンを押した時に、指定したファイルだけを削除。
    function deleteInputTag(file_name){
      var area = $("#image-text-area")
      var input = area.find("[data-file_name='" + file_name + "']")
