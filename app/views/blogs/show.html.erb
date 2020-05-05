@@ -33,7 +33,9 @@
 					<% @blog.images.each do |bi| %>
 						<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
 						<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-						<%= image_tag(bi.image_url, size:'400x250',class:"blog_slick-image") if bi.image_url %>
+						<%=  link_to bi.image.url, 'data-lightbox': bi.image do %>
+							<%= image_tag(bi.image_url, size:'400x250',class:"blog_slick-image") if bi.image_url %>
+						<% end %>
 					<% end %>
 				</div>
 			</div>
