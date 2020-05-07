@@ -43,6 +43,8 @@
 
 			<strong>Body</strong><br><div class="blog-body"><%= @blog.body %></div><br>
 			<%= @blog.created_at.strftime('%Y/%m/%d') %><br>
+			<hr>
+			Category:<%= link_to @blog.category_i18n, blogs_path(:category => @blog.category) %><br>
 
 
 

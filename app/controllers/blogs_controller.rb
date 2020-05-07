@@ -11,6 +11,7 @@ class BlogsController < ApplicationController
 			# blank? = 空白か否か
 			unless params[:category].blank?
 				@blogs = Blog.where(category: params[:category]).page(params[:page]).reverse_order
+				@category = params[:category]
 			else
 				@blogs = Blog.page(params[:page]).reverse_order
 			end

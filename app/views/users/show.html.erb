@@ -83,6 +83,8 @@
 					<% if current_user == @user %>
 						<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
 					<% end %>
+
+					Category:<%= link_to blog.category, blogs_path(:category => blog.category) %>
 					<br><%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
 				</div>
 			<% end %>

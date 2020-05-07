@@ -18,7 +18,11 @@
 			<%= content_tag(:div, value, class: "#{key}") %>
 		<% end %>
 
-		<h1>Blog一覧ページ</h1>
+		<% if params[:category] %>
+			<h1><%= @category %>一覧</h1>
+		<% else %>
+			<h1>Blog一覧</h1>
+		<% end %>
 
 					<!-- ユーザーが投稿したブログ内容をeach文を回していく -->
 				<% @blogs.each do |blog| %>
@@ -61,7 +65,7 @@
 		<div class="category-box">
 			<h3>カテゴリー</h3>
 			<% @categories.each do |category| %>
-			<h4><%= link_to category[0], blogs_path(:category => category[1]) %></h4><br>
+			<h4><%= link_to category[0], blogs_path(:category => category[0]) %></h4><br>
 			<% end %>
 		</div>
 		<div class="blog-ranks-box">
