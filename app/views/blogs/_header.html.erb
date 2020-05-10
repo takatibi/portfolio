@@ -1,40 +1,89 @@
-<div class="header">
+<header>
+	<div class="header">
+
+
+　		<nav class="global-nav">
+    		<% if user_signed_in? %>
+			<ul class="-link-box">
+				<li class="global-nav__item"><%= link_to new_blog_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>投稿画面
+					<% end %></li>
+				<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>いいねランキング
+				<li class="global-nav__item"><% end %></li>
+
+				<li class="global-nav__item"><%= link_to search_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span></span></span>検索
+					<% end %></li>
+
+				<li class="global-nav__item"><%= link_to destroy_user_session_path ,method: :delete, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></span>Log out
+					<% end %></li>
+
+			<% else %>
+				<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>いいねランキング
+				<li class="global-nav__item"><% end %></li>
+				<li class="global-nav__item"><%= link_to search_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span></span></span>検査
+					<% end %></li>
+				<li class="global-nav__item"><%= link_to new_user_registration_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> 新規登録
+					<% end %></li>
+			<% end %><br>
+			</ul>
+　		</nav>
+  		<div class="hamburger" id="js-hamburger">
+    		<span class="hamburger__line hamburger__line--1"></span>
+    		<span class="hamburger__line hamburger__line--2"></span>
+   			<span class="hamburger__line hamburger__line--3"></span>
+  		</div>
+ 		 <div class="black-bg" id="js-black-bg"></div>
+	</div>
+
+	<div class="header-text">
+		<h1>TRAVEL DIARY</h1>
+		<p>You only live once</p>
+	</div>
+
 	<% if user_signed_in? %>
-		<ul class="header-link-box">
-				<%= link_to user_path(current_user.id), class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>マイページ
-				<% end %>
 
-				<%= link_to blogs_path, class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>ブログ一覧
-				<% end %>
+		<%= link_to user_path(current_user.id), class:"btn btn-primary header-link" do %>
+			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>マイページ
+		<% end %>
 
-				<%= link_to new_blog_path, class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>投稿画面
-				<% end %>
-
-				<%= link_to search_path, class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span></span></span>検索
-				<% end %>
-
-				<%= link_to destroy_user_session_path ,method: :delete, class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></span>Log out
-				<% end %>
-
+		<%= link_to blogs_path, class:"btn btn-primary header-link" do %>
+			<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>ブログ一覧
+		<% end %>
 	<% else %>
-				<%= link_to blogs_path, class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> ブログ一覧
-				<% end %>
-
-				<%= link_to search_path, class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span></span></span>検査
-				<% end %>
-
-				<%= link_to new_user_session_path, class:"btn btn-primary header-link" do %>
-					<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> ログイン
-				<% end %>
+		<%= link_to blogs_path, class:"btn btn-primary header-link" do %>
+			<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> ブログ一覧
+		<% end %>
+		<%= link_to new_user_session_path, class:"btn btn-primary header-link" do %>
+			<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> ログイン
+		<% end %>
 	<% end %><br>
-		</ul>
-	<h1>TRAVEL DIARY</h1>
-	<p>You only live once</p>
-</div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

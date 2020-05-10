@@ -8,21 +8,33 @@
 	<%= render "blogs/header",user: @user %>
 </div>
 
+<div class="blog-center blog-index-title">
+	<!-- サクセスメッセージ -->
+	<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "#{key}") %>
+	<% end %>
+
+	<% if params[:category] %>
+		<h1><%= @category %>一覧</h1>
+	<% else %>
+		<h1>Blog一覧</h1>
+	<% end %>
+</div>
 
 <div class="blog-main">
-	<div class="blog-side-left">
+
+	<!-- カテゴリー -->
+	<div class="blog-side-right">
+		<div class="category-box">
+			<h3>カテゴリー</h3>
+			<div class="category-box-h4">
+				<% @categories.each do |category| %>
+					<h4><%= link_to category[0], blogs_path(:category => category[0]) %></h4>
+				<% end %>
+			</div>
+		</div>
 	</div>
 	<div class="blog-center">
-		<!-- サクセスメッセージ -->
-		<% flash.each do |key, value| %>
-			<%= content_tag(:div, value, class: "#{key}") %>
-		<% end %>
-
-		<% if params[:category] %>
-			<h1><%= @category %>一覧</h1>
-		<% else %>
-			<h1>Blog一覧</h1>
-		<% end %>
 
 					<!-- ユーザーが投稿したブログ内容をeach文を回していく -->
 				<% @blogs.each do |blog| %>
@@ -60,18 +72,6 @@
 					<%= paginate @blogs, class: "paginate " %>
 				</div>
 
-	</div>
-	<div class="blog-side-right">
-		<div class="category-box">
-			<h3>カテゴリー</h3>
-			<% @categories.each do |category| %>
-			<h4><%= link_to category[0], blogs_path(:category => category[0]) %></h4><br>
-			<% end %>
-		</div>
-		<div class="blog-ranks-box">
-			<h3>ランキング</h3>
-			<h4><%= link_to "いいねランキング", blogs_ranks_path %></h4>
-		</div>
 	</div>
 </div>
 
