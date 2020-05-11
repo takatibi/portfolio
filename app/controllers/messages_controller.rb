@@ -8,15 +8,22 @@ class MessagesController < ApplicationController
 		end
 		@message = Message.new(message_params)
 		@message.user_id = current_user.id
-		if @message.save
-			flash[:success] = "メッセージを送りました"
-			redirect_to "/rooms/#{@message.room_id}"
-		else
-			@room = Room.find(params[:message][:room_id])
-			@entries = @room.entries
-			@messages = @room.messages
-			flash.now[:alert] = "文字を入力してください"
-			render 'rooms/show'
+
+		begin
+			if @message.save
+				flash[:success] = "メッセージを送りました"
+				redirect_to "/rooms/#{@message.room_id}"
+			else
+				@room = Room.find(params[:message][:room_id])
+				@entries = @room.entries
+				@messages = @room.messages
+				flash.now[:alert] = "文字を入力してください"
+				render 'rooms/show'
+			end
+		rescue => error
+			logger.unknown("データベースが繋がってないかおかしいです")
+			logger.unknown(error.message)
+			logger.unknown(error.backtrace)
 		end
 	end
 

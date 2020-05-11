@@ -55,11 +55,17 @@ class BlogsController < ApplicationController
 				@blog.images.build()
 			end
 
-			if @blog.save
-				flash[:notice] = "ブログを投稿しました"
-				redirect_to blogs_path
-			else
-			 render action: :new
+			begin
+				if @blog.save
+					flash[:notice] = "ブログを投稿しました"
+					redirect_to blogs_path
+				else
+				 render action: :new
+				end
+			rescue => error
+				logger.unknown("データベースが繋がってないかおかしいです。")
+				logger.unknown(error.message)
+				logger.unknown(error.backtrace)
 			end
 		end
 
@@ -74,18 +80,30 @@ class BlogsController < ApplicationController
 				end
 			end
 
-			if @blog.update(blog_params)
-				flash[:notice] = "ブログ内容を編集しました"
-				redirect_to blog_path(@blog)
-			else
-				render action: :edit
+			begin
+				if @blog.update(blog_params)
+					flash[:notice] = "ブログ内容を編集しました"
+					redirect_to blog_path(@blog)
+				else
+					render action: :edit
+				end
+			rescue => error
+				logger.unknown("データベースが繋がってないかおかしいです。")
+				logger.unknown(error.message)
+				logger.unknown(error.backtrace)
 			end
 		end
 
 		def destroy
-		blog = Blog.find(params[:id])
-		blog.destroy
-		redirect_to blogs_path
+			blog = Blog.find(params[:id])
+			begin
+				blog.destroy
+			rescue => error
+				logger.unknown("データベースが繋がってないかおかしいです。")
+				logger.unknown(error.message)
+				logger.unknown(error.backtrace)
+			end
+			redirect_to blogs_path
 		end
 
 	private

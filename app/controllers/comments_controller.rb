@@ -3,13 +3,25 @@ class CommentsController < ApplicationController
 		@blog = Blog.find(params[:blog_id])
 		comment = current_user.comments.new(comment_params)
 		comment.blog_id = @blog.id
-		comment.save
+		begin
+			comment.save
+		rescue => error
+			logger.unknown("データベースが繋がってないかおかしいです")
+			logger.unknown(error.message)
+			logger.unknown(error.backtrace)
+		end
 	end
 
 	def destroy
 		comment = Comment.find(params[:blog_id])
 		@blog = comment.blog
-		comment.destroy
+		begin
+			comment.destroy
+		rescue => error
+			logger.unknown("データベースが繋がってないかおかしいです")
+			logger.unknown(error.message)
+			logger.unknown(error.backtrace)
+		end
 	end
 
 	private

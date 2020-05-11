@@ -18,16 +18,13 @@
 			<h1>詳細ページ</h1>
 			<!-- このblogの情報 -->
 			<%= link_to user_path(@user) do %>
-			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'150x150',class:"img-photo" %>
+				<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'150x150',class:"img-photo" %>
 			<% end %><br>
-			Name:<%= link_to @user.name ,user_path(@user) %><br>
 
-
-			<hr>
+			Name:<%= link_to @user.name ,user_path(@user) %><br><hr>
 			<strong>Title</strong><br>
-			<strong class="blog-title"><%= @blog.title %></strong><br>
+			<strong class="blog-title"><%= @blog.title %></strong><br><hr>
 
-			<hr>
 			<div class="blog-show-image">
 				<div class="blog_slick">
 					<% @blog.images.each do |bi| %>
@@ -42,17 +39,13 @@
 
 
 			<strong>Body</strong><br><div class="blog-body"><%= @blog.body %></div><br>
-			<%= @blog.created_at.strftime('%Y/%m/%d') %><br>
-			<hr>
-			Category:<%= link_to @blog.category_i18n, blogs_path(:category => @blog.category) %><br>
-
-
+				<%= @blog.created_at.strftime('%Y/%m/%d') %><br><hr>
+				<strong>Category:<%= link_to @blog.category_i18n, blogs_path(:category => @blog.category) %></strong><br>
 
 			<!-- 地図機能 -->
 
-			<% if @blog.map? %>
+		<% if @blog.map? %>
 			<hr>
-
 			<h2>Place</h2>
 
 			<div id='map'>
@@ -78,8 +71,8 @@
 			  geocoder = new google.maps.Geocoder()
 
 			  map = new google.maps.Map(document.getElementById('map'), {
-			  center: {lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %>},
-			  zoom: 15
+			  	center: {lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %>},
+			 	 zoom: 15
 			  });
 			}
 
@@ -88,8 +81,8 @@
 			  let inputAddress = document.getElementById('address').value;
 
 			  // geocodingしたあとmapを移動
-			  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-			    if (status == 'OK') {
+			 	 geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+			   	if (status == 'OK') {
 			　　　　　　　　　　　　// map.setCenterで地図が移動
 			      map.setCenter(results[0].geometry.location);
 
@@ -105,11 +98,7 @@
 			}
 			</script>
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQLzPQuodtRB0jBfgYbK_8fSdBDbWa-so&callback=initMap" async defer></script>
-
-
-			<% end %>
-
-			<hr>
+		<% end %><hr>
 
 
 

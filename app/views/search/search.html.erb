@@ -21,17 +21,6 @@
 		<% end %>
 	</div>
 
-	<div class="header-search">
-		<%= form_tag(search_path,:method => "get") do %>
-		<%= text_field_tag :seach_content %>
-		<%= select_tag :search_model, options_for_select([["User","user"],["Blog","blog"]]) %>
-		<%= submit_tag "検索" %>
-		<% end %>
-	</div>
-
-
-
-
 	<!-- ユーザーのプロフィール情報 -->
 	<% if params[:search_model] == "user" %>
 		<% @users.each do |user| %>
@@ -71,8 +60,10 @@
 					<strong><%= blog.title %></strong><br>
 					<%= link_to "ブログの記事を見る", blog_path(blog),data: {"turbolinks" => false} %><br>
 					<div id="links_buttons_<%= blog.id %>">
-						<%= render partial: "blogs/link", locals: {blog: blog} %>
-						<%= blog.comments.count %>コメント<br>
+						<% if user_signed_in? %>
+							<%= render partial: "blogs/link", locals: {blog: blog} %>
+							<%= blog.comments.count %>コメント<br>
+						<% end %>
 					</div>
 				</div>
 			</div>

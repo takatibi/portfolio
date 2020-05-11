@@ -8,10 +8,12 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @blog = @user.blogs
-    @currentUserEntry=Entry.where(user_id: current_user.id)
-    @userEntry=Entry.where(user_id: @user.id)
-    if @user.id == current_user.id
-    else
+    # roomボタンの出力判定処理
+    # ログインしているUserと相手のUserのidを取得
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    if @user.id != current_user.id
+      # ...自分自身以外の場合
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
           if cu.room_id == u.room_id then
@@ -20,8 +22,7 @@ class UsersController < ApplicationController
           end
         end
       end
-      if @isRoom
-      else
+      if !@isRoom
         @room = Room.new
         @entry = Entry.new
       end
@@ -42,11 +43,18 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	if @user.update(user_params)
-      flash[:notice] = "ユーザー情報を変更しました"
-      redirect_to user_path(@user)
-    else
-      render action: :edit
+
+    begin
+    	if @user.update(user_params)
+        flash[:notice] = "ユーザー情報を変更しました"
+        redirect_to user_path(@user)
+      else
+        render action: :edit
+      end
+    rescue => error
+      logger.unknown("データベースが繋がってないかおかしいです。")
+      logger.unknown(error.message)
+      logger.unknown(error.backtrace)
     end
   end
 
