@@ -11,20 +11,21 @@
 
 <div class="follows-box">
 	<h3>フォロワー数<%= @user.followers.count %>人</h3>
-	<% @user.followers.each do |f| %>
-	<div class="follows-box2">
-		<%= link_to user_path(f) do %>
-			<%= attachment_image_tag f, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
-		<% end %><br>
+		<% @user.followers.each do |f| %>
+			<div class="follows-box2">
+				<%= link_to user_path(f) do %>
+					<%= attachment_image_tag f, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
+				<% end %><br>
 
-		<strong>Name</strong><br>
-		<%= f.name %><br>
+				<strong>Name</strong><br>
+					<%= f.name %><br>
 
-		<!-- フォローボタン -->
-		<div id="follow_form<%= f.id %>">
-			<%= render "users/follower",user: @user, f: f %>
-		</div>
-		<%= f.introduction %><br>
-	</div>
-	<% end %>
+				<!-- フォローボタン -->
+				<div id="follow_form<%= f.id %>">
+					<%= render "users/follower",user: @user, f: f %>
+				</div>
+
+				<%= f.introduction %><br>
+			</div>
+		<% end %>
 </div>

@@ -27,37 +27,50 @@
 		<!-- ユーザーのプロフィール情報 -->
 		<div class="show-box2">
 			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
-			<!-- 名前 -->
-			<strong>Name: </strong>
-				<%= @user.name %><br>
-			<!-- 性別 -->
-			<% unless @user.sex == nil %>
-				<strong>性別: </strong>
-					<% if @user.sex == true %>
-							男
-					<% else %>
-							女
-					<% end %><br>
+
+			<div class="user-show-information">
+			<!-- ユーザーの名前、性別、年齢のテーブルタグ -->
+				<table>
+					<tr>
+						<!-- 名前 -->
+						<th><strong>Name:</strong></th>
+						<td> <%= @user.name %></td><br>
+					</tr>
+						<!-- 性別 -->
+						<% unless @user.sex == nil %>
+					<tr>
+						<th><strong>性別: </strong></th>
+						<td><% if @user.sex == true %>
+								男
+							<% else %>
+								女
+							<% end %><br>
+						<% end %></td>
+					</tr>
+						<!-- 年齢 -->
+						<% if @user.age? %>
+					<tr>
+						<th><strong>年齢: </strong></th>
+						<td><%= @user.age %>歳</td><br>
+							<% end %>
+					</tr>
+
+					<tr>
+						<% if @user.introduction? %>
+						<th><strong>自己紹介:</strong></th>
+							<td><%= @user.introduction %></td><br>
+					<% end %>
+				</table>
+			</div>
+
+			<% if current_user == @user %>
+				<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
 			<% end %>
 
-			<!-- 年齢 -->
-				<% if @user.age? %>
-					<strong>年齢</strong>
-					<%= @user.age %>歳<br>
-				<% end %>
-
-
-			<strong>Introduction</strong><br>
-				<%= @user.introduction %><br>
-
-				<% if current_user == @user %>
-					<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
-				<% end %>
-
 			<!-- フォローボタン -->
-				<div id="follow_form<%= @user.id %>">
-					<%= render "users/follow", user: @user %>
-				</div>
+			<div id="follow_form<%= @user.id %>">
+				<%= render "users/follow", user: @user %>
+			</div>
 
 			<div class="follow-box">
 				<!-- チャット機能(DM) -->
@@ -105,10 +118,10 @@
 				<br><%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
 			</div>
 		<% end %>
-		</div>
-		<div class="user-side-right">
-		</div>
 	</div>
+	<div class="user-side-right">
+	</div>
+</div>
 
 
 

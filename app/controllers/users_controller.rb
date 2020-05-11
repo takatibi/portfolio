@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   	if @user.update(user_params)
-      flash[:notice] = "名前を変更しました"
+      flash[:notice] = "ユーザー情報を変更しました"
       redirect_to user_path(@user)
     else
       render action: :edit
