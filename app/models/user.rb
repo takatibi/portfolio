@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :name, length: {in: 1..15}
   validates :introduction, length: {maximum: 100}
   validates :name, presence: true
+  validates :age,length: { maximum: 2 }
 
   def follow(other_user)
     unless self == other_user

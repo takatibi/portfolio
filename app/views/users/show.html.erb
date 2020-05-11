@@ -27,15 +27,32 @@
 		<!-- ユーザーのプロフィール情報 -->
 		<div class="show-box2">
 			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
-
-			<strong>Name</strong> :
-			<%= @user.name %><br>
-			<strong>Introduction</strong><br>
-			<%= @user.introduction %><br>
-
-			<% if current_user == @user %>
-				<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
+			<!-- 名前 -->
+			<strong>Name: </strong>
+				<%= @user.name %><br>
+			<!-- 性別 -->
+			<% unless @user.sex == nil %>
+				<strong>性別: </strong>
+					<% if @user.sex == true %>
+							男
+					<% else %>
+							女
+					<% end %><br>
 			<% end %>
+
+			<!-- 年齢 -->
+				<% if @user.age? %>
+					<strong>年齢</strong>
+					<%= @user.age %>歳<br>
+				<% end %>
+
+
+			<strong>Introduction</strong><br>
+				<%= @user.introduction %><br>
+
+				<% if current_user == @user %>
+					<%= link_to "プロフィール編集", edit_user_path(@user),class:"btn btn-primary" %>
+				<% end %>
 
 			<!-- フォローボタン -->
 				<div id="follow_form<%= @user.id %>">
@@ -64,30 +81,30 @@
 		</div>
 
 			<!-- ユーザーが投稿したブログ一覧 -->
-			<% @blog.each do |blog| %>
-				<div class="user-show-index">
-					<h3><%= blog.title %></h3><br>
-					<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
-					<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
-					<div class="blog-show-image">
-						<div class="blog_slick">
-							<% blog.images.each do |bi| %>
-								<%=  link_to bi.image.url, 'data-lightbox': bi.image do %>
-									<%= image_tag(bi.image_url, size:'300x200',class:"user_slick-image") if bi.image_url %>
-								<% end %>
+		<% @blog.each do |blog| %>
+			<div class="user-show-index">
+				<h3><%= blog.title %></h3><br>
+				<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
+				<!-- 「if bi.image_url」は「bi.image_urlが」ある時だけ表示。エラーを防ぐため -->
+				<div class="blog-show-image">
+					<div class="blog_slick">
+						<% blog.images.each do |bi| %>
+							<%=  link_to bi.image.url, 'data-lightbox': bi.image do %>
+								<%= image_tag(bi.image_url, size:'300x200',class:"user_slick-image") if bi.image_url %>
 							<% end %>
-						</div>
+						<% end %>
 					</div>
-						<%= blog.body %><br>
-						<%= link_to "記事を見る",blog_path(blog),class:"btn btn-primary" %>
-					<% if current_user == @user %>
-						<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
-					<% end %>
-
-					Category:<%= link_to blog.category, blogs_path(:category => blog.category) %>
-					<br><%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
 				</div>
-			<% end %>
+					<%= blog.body %><br>
+					<%= link_to "記事を見る",blog_path(blog),class:"btn btn-primary" %><br>
+				<% if current_user == @user %>
+					<%= link_to "削除",blog_path(blog),method: :delete,"data-confirm" => "本当に削除しますか？",class:"btn btn-danger" %><br>
+				<% end %>
+
+				Category:<%= link_to blog.category, blogs_path(:category => blog.category) %>
+				<br><%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+			</div>
+		<% end %>
 		</div>
 		<div class="user-side-right">
 		</div>
