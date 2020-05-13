@@ -48,10 +48,29 @@ class User < ApplicationRecord
     self.followers.exists?
   end
 
-  def self.search(search)
-        return User.all unless search
-        User.where(['name LIKE ?', "%#{search}%"])
-  end
+  # def self.search(search)
+  #       return User.all unless search
+  #       User.where(['name LIKE ?', "%#{search}%"])
+  # end
+
+
+    def self.search(method, word)
+      if method == "forward"
+        return User.where("name LIKE?","#{word}%")
+      elsif method == "backward"
+        return User.where("name LIKE?","%#{word}")
+      elsif method == "perfect"
+        return User.where(name: "#{word}")
+      elsif method == "partial"
+        return User.where("name LIKE?","%#{word}%")
+      else
+        return User.all
+      end
+    end
+
+
+
+
 end
 
 

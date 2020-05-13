@@ -11,11 +11,6 @@
 				<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>いいねランキング
 				<li class="global-nav__item"><% end %></li>
-
-				<li class="global-nav__item"><%= link_to search_path, class:"btn btn-primary header-link" do %>
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span></span></span>検索
-					<% end %></li>
-
 				<li class="global-nav__item"><%= link_to destroy_user_session_path ,method: :delete, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></span>Log out
 					<% end %></li>
@@ -24,9 +19,6 @@
 				<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>いいねランキング
 				<li class="global-nav__item"><% end %></li>
-				<li class="global-nav__item"><%= link_to search_path, class:"btn btn-primary header-link" do %>
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span></span></span>検査
-					<% end %></li>
 				<li class="global-nav__item"><%= link_to new_user_registration_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> 新規登録
 					<% end %></li>
@@ -60,6 +52,7 @@
 			<%= form_tag(search_path,:method => "get") do %>
 				<%= text_field_tag :seach_content %>
 				<%= select_tag :search_model, options_for_select([["User","user"],["Blog","blog"]]) %>
+				<%= select_tag :search_method,options_for_select([["前方一致","forward"],["後方一致","backward"],["完全一致","perfect",],["部分一致","partial"]]) %>
 				<%= submit_tag "検索" %>
 			<% end %>
 		</div>

@@ -26,8 +26,55 @@ class Blog < ApplicationRecord
 		北極: 7,
 	}
 
-	def self.search(search)
-      return Blog.all unless search
-      Blog.where([ "(title like ?)","%#{search}%"])
-    end
+	# def self.search(search)
+ #      return Blog.all unless search
+ #      Blog.where([ "(title like ?)","%#{search}%"])
+ #    end
+
+    def self.search(method, word)
+    	if method == "forward"
+    		return Blog.where("title LIKE?","#{word}%")
+    	elsif method == "backward"
+    		return Blog.where("title LIKE?","%#{word}")
+    	elsif method == "perfect"
+    		return Blog.where(title: "#{word}")
+    	elsif method == "partial"
+    		return Blog.where("title LIKE?","%#{word}%")
+    	else
+    		return Blog.all
+    	end
+   	end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
