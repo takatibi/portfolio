@@ -29,6 +29,11 @@ class BlogsController < ApplicationController
 			# first.coordinatesは検索結果の最初の緯度軽度を表す
 			@latlng = results.first.coordinates
 			end
+			@new_comment = Comment.new
+
+			_comments = Comment.includes(:user).where(blog_id: @blog.id).all.order(id: "DESC")
+    		@comments = []
+    		orderByReply(_comments, @comments)
 		end
 
 		def edit
@@ -112,7 +117,23 @@ class BlogsController < ApplicationController
 			params.require(:blog).permit(:title, :body, :category, :map)
 		end
 
-end
+		def orderByReply(comments ,newComments)
+  			comments.each do |comment|
+    			if comment.reply_comment == nil
+     				__orderByReply(comment, comments, newComments)
+    			end
+  			end
+		end
+
+		def __orderByReply(parentComment, comments ,newComments)
+  			newComments.push(parentComment)
+  				comments.each do |comment|
+   					if parentComment.id == comment.reply_comment
+     				 	__orderByReply(comment, comments, newComments)
+    				end
+  				end
+			end
+		end
 
 
 

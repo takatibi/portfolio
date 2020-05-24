@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_070304) do
+ActiveRecord::Schema.define(version: 2020_05_20_131834) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_070304) do
     t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reply_comment"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -68,6 +69,17 @@ ActiveRecord::Schema.define(version: 2020_05_11_070304) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "blog_id"
+    t.integer "comment_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|

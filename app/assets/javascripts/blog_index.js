@@ -5,7 +5,6 @@ $(function(){
 	var px_change = 450;
 	// スクロールのイベントを登録
 
-
 	// 全てに'scroll'が効いてしまう為「btn-backtotop」がある所にだけ効かすようにif文で定義。
 	if (document.getElementById( "btn-backtotop" ) != null){
 
@@ -20,14 +19,48 @@ $(function(){
 					document.getElementById( "btn-backtotop" ).classList.remove( "fadein" );
 				}
 		});
-
 			document.getElementById( "btn-backtotop" ).addEventListener('click', function(e) {
 				$('html, body').animate({
 	        		scrollTop: $('.js-section').offset().top
 	    		}, 800);
 			});
-
 	};
+
+
+	// ⬇︎クリックアクション⬇︎
+
+	// ブログindex
+	$(".blog-index-title h1").click(function(){
+		$(this).css("color","lime");
+		$(this).css("text-shadow","3px 3px 3px black");
+		$(this).css("font-weight","800");
+		$(this).css("text-stroke","1px black");
+	});
+
+	// ブログnew
+	$(".blog-main-new h1").click(function(){
+		$(this).css("color","lime");
+		$(this).css("text-shadow","3px 3px 3px black");
+		$(this).css("font-weight","800");
+		$(this).css("text-stroke","1px black");
+	});
+
+	// ブログshow
+	$(".blog-show-box2 h1").click(function(){
+		$(this).css("color","lime");
+		$(this).css("text-shadow","3px 3px 3px black");
+		$(this).css("font-weight","800");
+		$(this).css("text-stroke","1px black");
+	});
+
+	// ブログedit
+	$(".blog-edit-main h1").click(function(){
+		$(this).css("color","lime");
+		$(this).css("text-shadow","3px 3px 3px black");
+		$(this).css("font-weight","800");
+		$(this).css("text-stroke","1px black");
+	});
+
 });
 
 
