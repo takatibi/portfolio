@@ -33,50 +33,50 @@ $(function(){
 
 	// ランキング順位
 	$(".ranks-box h3").click(function(){
-		$(this).css("color","red");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
+		$(this).css({"color":"red",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800"});
 	});
+
 	$(".ranks-box h1").click(function(){
-		$(".ranks-box h1").css("color","yellow")
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
+		$(this).css({"color":"yellow",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
 	});
 
 
 	// ユーザーshow
 	$(".show-box h2").click(function(){
-		$(this).css("color","#0FF");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
-	})
+		$(this).css({"color":"#0FF",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
+	});
 
 	// ユーザーedit
 	$(".edit-box h3").click(function(){
-		$(this).css("color","#0FF");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
-	})
+		$(this).css({"color":"#0FF",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
+	});
 
 	// follow
 	$(".follows-box h3").click(function(){
-		$(this).css("color","#FF00FF");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
-	})
+		$(this).css({"color":"#FF00FF",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
+	});
 
 	// 検索
 	$(".search_results h2").click(function(){
-		$(this).css("color","lime");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
-	})
-
+		$(this).css({"color":"lime",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
+	});
 });
 
 

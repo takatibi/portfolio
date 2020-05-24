@@ -31,36 +31,35 @@ $(function(){
 
 	// ブログindex
 	$(".blog-index-title h1").click(function(){
-		$(this).css("color","lime");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
+		$(this).css({"color":"lime",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
 	});
 
 	// ブログnew
 	$(".blog-main-new h1").click(function(){
-		$(this).css("color","lime");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
+		$(this).css({"color":"lime",
+					"text-shadow":"3px 3px 3px black",
+					"font-weight":"800",
+					"text-stroke":"1px black"});
 	});
 
 	// ブログshow
 	$(".blog-show-box2 h1").click(function(){
-		$(this).css("color","lime");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
+		$(this).css({"color":"lime",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
 	});
 
 	// ブログedit
 	$(".blog-edit-main h1").click(function(){
-		$(this).css("color","lime");
-		$(this).css("text-shadow","3px 3px 3px black");
-		$(this).css("font-weight","800");
-		$(this).css("text-stroke","1px black");
+		$(this).css({"color":"lime",
+					 "text-shadow":"3px 3px 3px black",
+					 "font-weight":"800",
+					 "text-stroke":"1px black"});
 	});
-
 });
 
 
