@@ -4,10 +4,14 @@
 		<%= render "blogs/header",user: @user %>
 	</div>
 
+	<!-- 見出し文字 -->
 	<div class="ranks-box">
-		<h1>いいね <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> </span>ランキング</h1>
+		<div class="ranks-box2">
+			<h1>いいね <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> </span>ランキング</h1>
+				<p class="ranks-hover">最も「いいね数」の多い上位３つの記事!!</p>
+		</div>
 
-
+		<!-- 良いねランキングのeachぶん -->
 		<% @ranks.each.with_index(1) do|blog,i| %>
 			<h3>第<%= i %>位</h3><br>
 

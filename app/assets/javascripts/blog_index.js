@@ -65,14 +65,29 @@ $(function(){
 
 	
 // ⬇︎Hover機能⬇︎
+
+	// index画面
+
 	$(".blog-index-title").hover(
 		function(){
-			$(this).find(".blog-hover-text").addClass("hover-add")
+			$(this).find(".blog-index-hover").addClass("hover-add")
 		},
 		function(){
-			$(this).find(".blog-hover-text").removeClass("hover-add")
+			$(this).find(".blog-index-hover").removeClass("hover-add")
 		}
 	);
+
+	// new画面
+
+	$(".blog-new-title").hover(
+		function(){
+			$(this).find(".blog-new-hover").addClass("hover-add")
+
+		},
+		function(){
+			$(this).find(".blog-new-hover").removeClass("hover-add")
+
+		});
 });
 
 
