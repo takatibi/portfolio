@@ -21,7 +21,7 @@
 
 
 $(function(){
-	// スライダー
+// ⬇︎スライダー⬇︎
 	$('.blog_slick').slick({
 		autoplay:true,
 		dots:true,
@@ -29,7 +29,7 @@ $(function(){
 
 
 
-	// ⬇︎クリックアクション⬇︎
+// ⬇︎クリックアクション⬇︎
 
 	// ランキング順位
 	$(".ranks-box h3").click(function(){

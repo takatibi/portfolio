@@ -49,10 +49,27 @@
 	padding-bottom: 30px;
 }
 
+// ~..一覧文字
 .blog-index-title h1{
 	margin:0;
 	padding-top: 20px;
 	padding-bottom: 10px;
+}
+
+// hover文字
+.blog-hover-text{
+	display: none;
+	color:#FF00FF;
+	font-size: 20px;
+	text-shadow: none;
+}
+
+.hover-add{
+	display: block;
+}
+
+.blog-index-active{
+	display:block;
 }
 
 

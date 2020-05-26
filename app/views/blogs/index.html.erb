@@ -6,6 +6,7 @@
 <!-- ヘッダー -->
 <div class="blog-header">
 	<%= render "blogs/header",user: @user %>
+</div>
 
 
 <div class="blog-center blog-index-title">
@@ -14,10 +15,21 @@
 		<%= content_tag(:div, value, class: "#{key}") %>
 	<% end %>
 
+	<!-- Blog見出し文字 -->
 	<% if params[:category] %>
 		<h1><%= @category %>一覧</h1>
+			<p class="blog-hover-text">皆んなが投稿した<br><%= params[:category] %>のBlog記事!!<br>
+				<% if user_signed_in? %>
+					あなたも沢山投稿して思い出を残そう!!
+				<% end %>
+			</p>
 	<% else %>
 		<h1>Blog一覧</h1>
+			<p class="blog-hover-text">皆んなのBlog記事!!<br>
+				<% if user_signed_in? %>
+					あなたも沢山投稿して思い出を残そう!!
+				<% end %>
+			</p>
 	<% end %>
 </div>
 

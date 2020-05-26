@@ -1,10 +1,11 @@
 
 
 $(function(){
+
+// ⬇︎スクロールアクション⬇︎
+
 	// スクロールして何ピクセルでアニメーションさせるか
 	var px_change = 450;
-	// スクロールのイベントを登録
-
 	// 全てに'scroll'が効いてしまう為「btn-backtotop」がある所にだけ効かすようにif文で定義。
 	if (document.getElementById( "btn-backtotop" ) != null){
 
@@ -27,7 +28,7 @@ $(function(){
 	};
 
 
-	// ⬇︎クリックアクション⬇︎
+// ⬇︎クリックアクション⬇︎
 
 	// ブログindex
 	$(".blog-index-title h1").click(function(){
@@ -60,6 +61,46 @@ $(function(){
 					 "font-weight":"800",
 					 "text-stroke":"1px black"});
 	});
+
+
+	
+// ⬇︎Hover機能⬇︎
+	$(".blog-index-title").hover(
+		function(){
+			$(this).find(".blog-hover-text").addClass("hover-add")
+		},
+		function(){
+			$(this).find(".blog-hover-text").removeClass("hover-add")
+		}
+	);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
