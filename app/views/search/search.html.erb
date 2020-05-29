@@ -29,11 +29,21 @@
 					<%= link_to user_path(user) do %>
 					<%= attachment_image_tag user, :profile_image, :fill, 200, 200 ,fallback: "unnamed.gif",size:'200x200',class:"img-photo" %><br>
 					<% end %>
-					<strong>Name</strong><br>
-					<%= link_to user.name ,user_path(user)  %><br>
 
-					<strong>Introduction</strong><br>
-					<%= user.introduction %><br>
+
+
+						<strong>名前:</strong>
+							<%= link_to user.name ,user_path(user)  %><br>
+
+					<% if user.age %>
+						<strong>年齢:</strong>
+							<%= user.age %><br>
+					<% end %>
+
+					<% if user.introduction %>
+						<strong>一言:</strong>
+						<%= user.introduction %><br>
+				<% end %>
 				</div>
 			</div>
 		<% end %>
@@ -44,7 +54,7 @@
 			<div class="search-box">
 				<div class="search-index">
 					<%= link_to user_path(blog.user) do %>
-						<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %>
+						<%= attachment_image_tag blog.user, :profile_image, :fill, 100, 100 ,fallback: "unnamed.gif",size:'100x100',class:"img-photo" %><br>
 					<% end %>
 						<%= link_to blog.user.name ,user_path(blog.user) %><br>
 						<!-- キャリアウエーブの使用上、「image_url」で画像が表示される -->
@@ -58,13 +68,13 @@
 
 					<!-- ブログ内容 -->
 					<strong><%= blog.title %></strong><br>
-					<%= link_to "ブログの記事を見る", blog_path(blog),data: {"turbolinks" => false} %><br>
-					<div id="links_buttons_<%= blog.id %>">
-						<% if user_signed_in? %>
-							<%= render partial: "blogs/link", locals: {blog: blog} %>
+						<%= link_to "ブログの記事を見る", blog_path(blog),data: {"turbolinks" => false} %><br>
+							<div id="links_buttons_<%= blog.id %>">
+								<% if user_signed_in? %>
+									<%= render partial: "blogs/link", locals: {blog: blog} %>
+								<% end %>
+							</div>
 							<%= blog.comments.count %>コメント<br>
-						<% end %>
-					</div>
 				</div>
 			</div>
 		<% end %>

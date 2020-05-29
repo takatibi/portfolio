@@ -19,7 +19,7 @@
 	flex-direction: row-reverse;
 	justify-content: center;
 	background: linear-gradient(#fffde4, #005aa7);
-	padding: 0 20px;
+	padding: 0 20px 30px 20px;
 }
 
 @media screen and (max-width: 768px){
@@ -193,6 +193,12 @@ img.blog_slick-image{
 	background-color:#CCFFFF;
 }
 
+@media screen and(max-width: 768px){
+	.blog-new-form{
+		width: 80%;
+	}
+}
+
 .blog-new-box{
 	padding-bottom: 60px;
 }
@@ -283,17 +289,8 @@ img.blog_slick-image{
 	flex-flow: wrap;
 }
 
-.blog-edit-form{
-	width: 45%;
-	margin:50px auto;
-	border:solid 1px black;
-	background-color:#CCFFFF;
-}
 
-.blog-edit-form-btn{
-	width: 100%;
-	text-align: center;
-}
+
 
 .blog-edit-form{
 	width: 45%;
@@ -301,6 +298,19 @@ img.blog_slick-image{
 	border:solid 1px black;
 	background-color:#CCFFFF;
 }
+
+@media screen and(max-width: 768px){
+	.blog-edit-form{
+		width: 100%;
+	}
+}
+
+
+.blog-edit-form-btn{
+	width: 100%;
+	text-align: center;
+}
+
 
 
 

@@ -26,19 +26,24 @@
 .search-box{
 	width: 100%;
 	text-align: center;
-	margin: 20px 0;
 	padding-bottom: 50px;
 }
 
 .search-index{
 	border:solid 1px black;
 	background-color:#CCFFFF;
-	width: 60%;
+	width: 40%;
 	margin:0 auto;
 	padding:20px;
 }
 
+@media screen and (max-width: 768px){
+	.search-index{
+		width: 60%;
+	}
+}
+
 img.slick-slide{
 	width: 500px;
-	height: 300px;
+	object-fit: contain;
 }
