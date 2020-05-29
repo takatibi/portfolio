@@ -39,10 +39,6 @@ describe 'Blogのテスト' do
 				visit blogs_path
 				expect(page).to have_link "オセアニア"
 			end
-			it 'ランキングのリンクの表示' do
-				visit blogs_path
-				expect(page).to have_link "いいねランキング"
-			end
 		end
 	end
 

@@ -121,13 +121,20 @@ header{
   z-index: -1;
 }
 
+// ログイン画面
+
 .log-box{
   	background-color: rgba( 0, 0, 0, 0.5);
 	padding-bottom: 30px;
 	margin:0 auto;
-	width: 400px;
+	width: 30%;
 	padding-top: 20px;
+
+    @media screen and (max-width:767px){
+      width: 100%;
+    }
 }
+
 
 .log-box span{
   color: white;
@@ -137,6 +144,12 @@ header{
 	padding-bottom: 20px;
   color: white;
 }
+
+
+
+
+
+
 
 .field{
 	padding-bottom: 10px;
