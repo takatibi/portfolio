@@ -7,14 +7,16 @@
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>投稿画面
 					<% end %></li>
 
-					<li class="global-nav__item"><%= link_to items_path, class:"btn btn-primary header-link" do %>
-						<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>ショッピング
-					<% end %></li>
 
 
 					<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>いいねランキング
 					<li class="global-nav__item"><% end %></li>
+
+					<li class="global-nav__item"><%= link_to items_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>ショッピング
+					<% end %></li>
+
 					<li class="global-nav__item"><%= link_to destroy_user_session_path ,method: :delete, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></span>Log out
 					<% end %></li>
