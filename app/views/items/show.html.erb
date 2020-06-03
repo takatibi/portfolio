@@ -1,0 +1,59 @@
+<div class="item-show">
+
+	<div class="item-header">
+		<%= render "items/item_header" %>
+	</div>
+
+	<div class="item-show-box">
+			<!-- サクセスメッセージ -->
+		<% flash.each do |key, value| %>
+			<%= content_tag(:div, value, class: "#{key}") %>
+		<% end %>
+
+		<div class="item-headline clearfix">
+			<h1>商品名: <%= @item.product %></h1>
+			<strong><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>電話番号 : 0120-XXX-XXX</span><br>
+				<p>商品を購入される方はこちらの番号まで</p></strong>
+		</div>
+
+				<table class="table">
+					<tr>
+						<th>商品画像</th><th>商品説明</th><th>値段（税込</th>
+					</tr>
+
+					<tr>
+						<td><%= link_to item_path(@item) do %>
+								<%= attachment_image_tag @item, :item_image, :fill, 300, 300 ,fallback: "unnamed.gif",size:'300x300' %>
+							<% end %>
+						</td>
+						<td><%= @item.explanation %></td>
+							<% total_price = (BigDecimal(@item.price)*(1.1)).ceil %></td>
+						<td><%= converting_to_jpy(total_price) %>
+					</tr>
+				</table>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

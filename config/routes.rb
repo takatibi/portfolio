@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  get 'items/index'
+  get 'items/show'
+  get 'items/edit'
+  get 'items/new'
   get 'image/new'
   get 'users/show'
   get 'users/edit'
@@ -13,6 +18,12 @@ Rails.application.routes.draw do
       get :following, :follower
      end
   end
+
+  namespace :admin do
+    resources :items
+
+  end
+  resources :items
   resources :blogs do
   	resource :comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
@@ -21,5 +32,8 @@ Rails.application.routes.draw do
   resources :rooms, :only => [:create, :show, :index] do
     resources :messages, :only => [:create]
   end
-  resources :notifications, :only => [:index, :destroy]
+
+
+
+
 end

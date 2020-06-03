@@ -1,36 +1,41 @@
 <header>
 	<div class="header">
-
-
-　		<nav class="global-nav">
-    		<% if user_signed_in? %>
-			<ul class="-link-box">
-				<li class="global-nav__item"><%= link_to new_blog_path, class:"btn btn-primary header-link" do %>
+	　	<nav class="global-nav">
+			<% if user_signed_in? %>
+				<ul class="-link-box">
+					<li class="global-nav__item"><%= link_to new_blog_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>投稿画面
 					<% end %></li>
-				<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
+
+					<li class="global-nav__item"><%= link_to items_path, class:"btn btn-primary header-link" do %>
+						<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>ショッピング
+					<% end %></li>
+
+
+					<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>いいねランキング
-				<li class="global-nav__item"><% end %></li>
-				<li class="global-nav__item"><%= link_to destroy_user_session_path ,method: :delete, class:"btn btn-primary header-link" do %>
+					<li class="global-nav__item"><% end %></li>
+					<li class="global-nav__item"><%= link_to destroy_user_session_path ,method: :delete, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></span>Log out
 					<% end %></li>
 
 			<% else %>
-				<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
+					<li class="global-nav__item"><%= link_to blogs_ranks_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>いいねランキング
-				<li class="global-nav__item"><% end %></li>
-				<li class="global-nav__item"><%= link_to new_user_registration_path, class:"btn btn-primary header-link" do %>
+					<li class="global-nav__item"><% end %></li>
+					<li class="global-nav__item"><%= link_to new_user_registration_path, class:"btn btn-primary header-link" do %>
 						<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> 新規登録
 					<% end %></li>
 			<% end %><br>
-			</ul>
-　		</nav>
-  		<div class="hamburger" id="js-hamburger">
-    		<span class="hamburger__line hamburger__line--1"></span>
-    		<span class="hamburger__line hamburger__line--2"></span>
-   			<span class="hamburger__line hamburger__line--3"></span>
-  		</div>
- 		 <div class="black-bg" id="js-black-bg"></div>
+				</ul>
+	　	</nav>
+		<div class="hamburger" id="js-hamburger">
+			<span class="hamburger__line hamburger__line--1"></span>
+			<span class="hamburger__line hamburger__line--2"></span>
+			<span class="hamburger__line hamburger__line--3"></span>
+		</div>
+	 	<div class="black-bg" id="js-black-bg">
+	 	</div>
 	</div>
 
 	<div class="header-text">

@@ -1,0 +1,80 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.item-header{
+	background-color: black;
+	width: 100%;
+	height: 250px;
+	padding-top: 10px;
+	text-align: center;
+	background-image: image-url("shop.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.items-kaminari{
+	text-align: center;
+}
+
+
+
+
+
+
+.item-new{
+	width: 100%;
+	text-align: center;
+}
+
+#item_item_image{
+	text-align: center;
+	margin:0 auto;
+}
+
+
+
+.item-index{
+	width: 100%;
+}
+
+.item-index-box{
+	width: 80%;
+	margin:0 auto;
+}
+
+
+
+
+.item-show{
+	width: 100%;
+}
+
+.item-show-box{
+	width: 80%;
+	margin:0 auto;
+}
+
+
+
+
+.item-headline h1{
+	float: left;
+}
+
+.item-headline strong{
+	padding-top: 40px;
+	float: right;
+}
+
+.item-headline p{
+	color: #888888;
+	text-shadow: none;
+	float: right;
+}

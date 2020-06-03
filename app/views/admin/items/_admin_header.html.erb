@@ -1,0 +1,15 @@
+
+
+<h2>管理者画面</h2>
+
+<%= link_to admin_items_path, class:"btn btn-primary header-link" do %>
+	<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>商品一覧（管理者）
+<% end %>
+
+<%= link_to new_admin_item_path, class:"btn btn-primary header-link" do %>
+	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>商品を追加
+<% end %>
+
+<%= link_to destroy_user_session_path ,method: :delete, class:"btn btn-primary header-link" do %>
+	<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></span>Log out
+<% end %></li>
