@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_103743) do
     t.text "explanation"
     t.integer "price"
     t.string "item_image_id"
-    t.integer "user_id"
     t.float "tax", default: 1.1
   end
 
@@ -135,7 +134,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_103743) do
     t.string "profile_image_id"
     t.boolean "sex"
     t.integer "age"
-    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
