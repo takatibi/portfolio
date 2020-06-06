@@ -6,14 +6,13 @@ $(function(){
   // 写真を保持する箱を配列で作る
   var dataBox = [];
   //「querySelector」でfile_fieldを取得
-  var file_field = document.querySelector('input[type=file]')
-  $(file_field).attr("name", "dummy")
+  $('input[type=file]#img-file').attr("name", "dummy")
 
 
 // -------------------------------------------
   // ボタンをクリックした時に発火されるイベント
   // 関数をクリックに渡している
-  $('#img-file').click(function () {
+  $('input[type=file]#img-file').click(function () {
     previous_files = $('input[type="file"]').prop('files');
     // inputタグのtype属性がfileになっているものを全て取ってくる。
     // 取ってきてfileの中から更にfilesプロパティを全て取ってくる。
