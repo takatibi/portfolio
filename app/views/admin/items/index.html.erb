@@ -31,7 +31,7 @@
 		<% @items.each do |f| %>
 			<tr>
 				<td><%= link_to item_path(f) do %>
-						<%= attachment_image_tag f, :item_image, :fill, 300, 300 ,fallback: "unnamed.gif",size:'300x300' %>
+						<%= attachment_image_tag f, :item_image %>
 					<% end %>
 				</td>
 				<td><h2><%= f.product %></h2></td>
